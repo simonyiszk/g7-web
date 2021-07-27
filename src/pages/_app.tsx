@@ -1,12 +1,12 @@
 import "@/styles.css";
-import "@/polyfills";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import React from "react";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<React.StrictMode>
 			<Head>
 				<meta
 					name="color-scheme"
@@ -15,6 +15,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 
 			<Component {...pageProps} />
-		</>
+		</React.StrictMode>
 	);
 }
