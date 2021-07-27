@@ -12,45 +12,21 @@ export function Layout({
 			<Head>
 				<link rel="preconnect" href="https://vitals.vercel-insights.com" />
 				<link rel="preconnect" href="https://www.google-analytics.com" />
-				<title>Destiny Launcher</title>
+				<title>G7</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta
-					name="description"
-					content="Destiny Launcher aims to be a launcher for the websites
-					made around Destiny and its public api. It presents the numerous
-					websites for new players to explore and makes them easily accessible
-					from one place, for everyone."
-				/>
+				<meta name="description" content="G7" />
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content="Destiny Launcher" />
-				<meta
-					name="twitter:description"
-					content="Destiny Launcher aims to be a launcher for the websites
-					made around Destiny and its public api. It presents the numerous
-					websites for new players to explore and makes them easily accessible
-					from one place, for everyone."
-				/>
+				<meta name="twitter:description" content="G7" />
 				<meta
 					name="twitter:image"
-					content="https://destinylauncher.net/preview.png"
+					content="https://g7.sch.bme.hu/preview.png"
 				/>
-				<meta
-					name="thumbnail"
-					content="https://destinylauncher.net/preview.png"
-				/>
-				<meta
-					property="og:image"
-					content="https://destinylauncher.net/preview.png"
-				/>
+				<meta name="thumbnail" content="https://g7.sch.bme.hu/preview.png" />
+				<meta property="og:image" content="https://g7.sch.bme.hu/preview.png" />
 				<meta property="og:title" content="Destiny Launcher" />
-				<meta
-					property="og:description"
-					content="Destiny Launcher aims to be a launcher for the websites
-					made around Destiny and its public api. It presents the numerous
-					websites for new players to explore and makes them easily accessible
-					from one place, for everyone."
-				/>
-				<meta property="og:url" content="https://destinylauncher.net" />
+				<meta property="og:description" content="G7" />
+				<meta property="og:url" content="https://g7.sch.bme.hu/" />
 				<meta property="og:type" content="website" />
 				<link
 					rel="apple-touch-icon"
@@ -112,7 +88,7 @@ export function Layout({
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-				<meta name="format-detection" content="telephone=no" />
+				<meta name="format-detection" content="telephone=yes" />
 				<link rel="manifest" href="/manifest.json" />
 				<link rel="shortcut icon" href="/favicon-100x100.png" />
 			</Head>
