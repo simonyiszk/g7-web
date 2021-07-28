@@ -21,14 +21,17 @@
 		"*.{js,ts,tsx}": "eslint --fix"
 	},
 	"dependencies": {
+		"@fontsource/noto-sans": "^4.5.0",
 		"@next/bundle-analyzer": "^11.0.1",
 		"@tailwindcss/aspect-ratio": "^0.2.1",
+		"@tailwindcss/line-clamp": "^0.2.1",
 		"autoprefixer": "^10.3.1",
 		"babel-plugin-optimize-clsx": "^2.6.2",
 		"clsx": "^1.1.1",
 		"cookie": "^0.4.1",
 		"next": "^11.0.1",
 		"next-compose-plugins": "^2.2.1",
+		"next-transpile-modules": "^8.0.0",
 		"postcss-import": "^14.0.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",

@@ -1,4 +1,5 @@
 .footer {
+	a > div:hover,
 	img:hover {
 		/* This is the closest I could get it to orange :D */
 		filter: invert(0.5) sepia(1) hue-rotate(335deg) saturate(4) brightness(0.9)

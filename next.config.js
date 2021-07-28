@@ -1,5 +1,6 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer");
 const withPlugins = require("next-compose-plugins");
+const withTM = require("next-transpile-modules")(["@fontsource/noto-sans"]);
 
 const nextConfig = {
 	reactStrictMode: true,
@@ -9,6 +10,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-	[withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })],
+	[withTM, withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })],
 	nextConfig,
 );

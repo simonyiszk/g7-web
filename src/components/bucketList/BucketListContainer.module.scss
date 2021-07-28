@@ -1,0 +1,12 @@
+.container {
+	@apply grid-cols-1;
+	@screen md {
+		@apply grid-cols-2;
+	}
+	@screen xl {
+		@apply grid-cols-3;
+	}
+	@screen 2xl {
+		@apply grid-cols-4;
+	}
+}
