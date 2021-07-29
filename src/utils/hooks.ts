@@ -41,11 +41,11 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 	// Pass initial state function to useState so logic is only executed once
 	const [storedValue, setStoredValue] = useState<T>(() => {
 		if (typeof window === "undefined") {
-			console.warn("No window yet in useLocalStorage");
+			console.warn(`No window yet in ${key} useLocalStorage init`);
 			return initialValue;
 		}
 		try {
-			console.log("init");
+			console.log(`init ${key}`);
 			// Get from local storage by key
 			const item = window.localStorage.getItem(key);
 			// Parse stored json or if none return initialValue
@@ -60,11 +60,11 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 	// ... persists the new value to localStorage.
 	const setValue = (value: T | ((val: T) => T)) => {
 		if (typeof window === "undefined") {
-			console.warn("No window yet in useLocalStorage");
+			console.warn(`No window yet in ${key} useLocalStorage set`);
 			return;
 		}
 		try {
-			console.log("save");
+			console.log(`save ${key}`);
 			// Allow value to be a function so we have same API as useState
 			const valueToStore =
 				value instanceof Function ? value(storedValue) : value;

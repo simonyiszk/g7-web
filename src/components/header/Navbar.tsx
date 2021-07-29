@@ -72,7 +72,7 @@ export function Navbar() {
 						<div className="flex lg:hidden gap-2 items-center">
 							<Toggle
 								id="darkModeToggle1"
-								checked={darkMode}
+								defaultChecked={darkMode}
 								onClick={(e) => {
 									setDarkMode(e.currentTarget.checked);
 								}}
@@ -128,7 +128,7 @@ export function Navbar() {
 						<div className="hidden lg:block p-2 pl-8">
 							<Toggle
 								id="darkModeToggle2"
-								checked={darkMode}
+								defaultChecked={darkMode}
 								onClick={(e) => {
 									setDarkMode(e.currentTarget.checked);
 								}}
