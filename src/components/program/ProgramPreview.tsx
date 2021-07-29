@@ -25,7 +25,7 @@ export function ProgramPreview({
 		<Link href={`/programok/${slug}`}>
 			<a>
 				<article className="flex gap-2 justify-between text-white">
-					<div className="md:p-4 py-3 px-4 bg-black rounded-2xl">
+					<div className="md:p-4 py-3 px-4 bg-accent-dark rounded-2xl">
 						<div className="flex gap-2 justify-between mb-2 text-xs text-warmGray-400">
 							<div>
 								<span
@@ -52,7 +52,7 @@ export function ProgramPreview({
 						</p>
 					</div>
 					<div
-						className="flex justify-center items-center md:p-4 py-3 px-4 text-center bg-black rounded-2xl"
+						className="flex justify-center items-center md:p-4 py-3 px-4 text-center bg-accent-dark rounded-2xl"
 						style={{ minWidth: "8ch" }}
 					>
 						<div>

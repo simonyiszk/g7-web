@@ -10,13 +10,11 @@ export function Layout({
 	return (
 		<>
 			<Head>
-				<link rel="preconnect" href="https://vitals.vercel-insights.com" />
-				<link rel="preconnect" href="https://www.google-analytics.com" />
 				<title>G7</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<meta name="description" content="G7" />
 				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:title" content="Destiny Launcher" />
+				<meta name="twitter:title" content="G7" />
 				<meta name="twitter:description" content="G7" />
 				<meta
 					name="twitter:image"
@@ -24,7 +22,7 @@ export function Layout({
 				/>
 				<meta name="thumbnail" content="https://g7.sch.bme.hu/preview.png" />
 				<meta property="og:image" content="https://g7.sch.bme.hu/preview.png" />
-				<meta property="og:title" content="Destiny Launcher" />
+				<meta property="og:title" content="G7" />
 				<meta property="og:description" content="G7" />
 				<meta property="og:url" content="https://g7.sch.bme.hu/" />
 				<meta property="og:type" content="website" />
@@ -79,8 +77,8 @@ export function Layout({
 				/>
 				<link rel="manifest" href="/site.webmanifest" />
 				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#161627" />
-				<meta name="apple-mobile-web-app-title" content="Destiny Launcher" />
-				<meta name="application-name" content="Destiny Launcher" />
+				<meta name="apple-mobile-web-app-title" content="G7" />
+				<meta name="application-name" content="G7" />
 				<meta name="msapplication-TileColor" content="#161627" />
 				<meta name="theme-color" content="#161627" />
 

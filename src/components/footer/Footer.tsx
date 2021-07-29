@@ -13,7 +13,9 @@ import * as styles from "./Footer.module.scss";
 
 export function Footer() {
 	return (
-		<footer className={clsx(styles.footer, "p-8 w-full text-white bg-black")}>
+		<footer
+			className={clsx(styles.footer, "p-8 w-full text-white bg-accent-dark")}
+		>
 			<div className="container flex flex-col justify-center content-center mx-auto text-center">
 				<div className="flex flex-col items-center pb-4 mx-auto w-full lg:w-1/3">
 					<a href="https://sssl.sch.bme.hu/" target="_blank" rel="noreferrer">

@@ -24,7 +24,7 @@ export function BucketListItemPreview({
 	return (
 		<Link href={`/bucketlist/${number}`}>
 			<a>
-				<figure className="flex gap-4 justify-between items-center py-3 px-4 text-white bg-black rounded-2xl">
+				<figure className="flex gap-4 justify-between items-center py-3 px-4 text-white bg-accent-dark rounded-2xl">
 					<div>
 						<h4 className="text-xl line-clamp-1">{`#${number} - ${title}`}</h4>
 						<p className="text-sm text-warmGray-400">
