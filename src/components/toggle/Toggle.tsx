@@ -5,7 +5,7 @@ import styles from "./Toggle.module.scss";
 export function Toggle({
 	id,
 	checked,
-	onChange,
+	onClick,
 	className,
 	...restProps
 }: React.HTMLProps<HTMLInputElement> & { id: string }) {
@@ -21,7 +21,7 @@ export function Toggle({
 					className,
 				)}
 				checked={checked}
-				onChange={onChange}
+				onClick={onClick}
 				{...restProps}
 			/>
 			{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
