@@ -1,0 +1,6 @@
+.toggleCheckbox:checked {
+	@apply right-0 border-gray-600;
+}
+.toggleCheckbox:checked + .toggleLabel {
+	@apply bg-gray-700;
+}

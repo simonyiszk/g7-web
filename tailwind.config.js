@@ -9,17 +9,21 @@ module.exports = {
 	darkMode: "class",
 	theme: {
 		colors,
-		fontFamily: {
-			NotoSans: [
-				'"Noto Sans"',
-				"ui-sans-serif",
-				"system-ui",
-				"-apple-system",
-				'"Segoe UI"',
-				"Roboto",
-			],
-		},
 		extend: {
+			fontFamily: {
+				NotoSans: [
+					'"Noto Sans"',
+					"ui-sans-serif",
+					"system-ui",
+					"-apple-system",
+					'"Segoe UI"',
+					"Roboto",
+				],
+			},
+			colors: {
+				accent: { dark: "#1C1C1E" },
+				darkBG: "#323235",
+			},
 			transitionTimingFunction: {
 				DEFAULT: defaultTheme.transitionTimingFunction.out,
 			},

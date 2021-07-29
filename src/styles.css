@@ -30,4 +30,5 @@
 body,
 html {
 	@apply font-NotoSans;
+	@apply dark:bg-darkBG dark:text-white;
 }
