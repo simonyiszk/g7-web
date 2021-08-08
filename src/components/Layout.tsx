@@ -3,29 +3,34 @@ import Head from "next/head";
 import { Footer } from "@/components/footer/Footer";
 import { Navbar } from "@/components/header/Navbar";
 
-export function Layout({
-	children,
-	...restProps
-}: React.HTMLAttributes<HTMLDivElement>): JSX.Element {
+export type LayoutProps = {
+	title: string;
+} & React.HTMLAttributes<HTMLDivElement>;
+
+export function Layout({ children, title, ...restProps }: LayoutProps) {
+	const pageTitle = `G7 | ${title}`;
+	const description = "G7";
+	const url = "https://g7.sch.bme.hu/";
+	const preview = `${url}preview.png`;
 	return (
 		<>
 			<Head>
-				<title>G7</title>
+				<title>{pageTitle}</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta name="description" content="G7" />
+				<meta name="description" content={description} />
+				<meta name="thumbnail" content={preview} />
+
 				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:title" content="G7" />
-				<meta name="twitter:description" content="G7" />
-				<meta
-					name="twitter:image"
-					content="https://g7.sch.bme.hu/preview.png"
-				/>
-				<meta name="thumbnail" content="https://g7.sch.bme.hu/preview.png" />
-				<meta property="og:image" content="https://g7.sch.bme.hu/preview.png" />
-				<meta property="og:title" content="G7" />
-				<meta property="og:description" content="G7" />
-				<meta property="og:url" content="https://g7.sch.bme.hu/" />
+				<meta name="twitter:title" content={pageTitle} />
+				<meta name="twitter:description" content={description} />
+				<meta name="twitter:image" content={preview} />
+
+				<meta property="og:image" content={preview} />
+				<meta property="og:title" content={pageTitle} />
+				<meta property="og:description" content={description} />
+				<meta property="og:url" content={url} />
 				<meta property="og:type" content="website" />
+
 				<link
 					rel="apple-touch-icon"
 					sizes="60x60"

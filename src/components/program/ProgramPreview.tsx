@@ -13,8 +13,8 @@ export type ProgramPreviewProps = {
 };
 
 export function ProgramPreview({
-	title = "Valami nagyon király program aminek hosszú a címe és még lehet hogy annál is hosszabb",
-	description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Posuere quam sed egestas tincidunt.",
+	title = "Valami nagyon király program ",
+	description = "Lorem ipsum dolor sit amet",
 	location = "Schönherz",
 	startDate = new Date(),
 	endDate = new Date(),
@@ -22,10 +22,10 @@ export function ProgramPreview({
 	slug = "asd123",
 }: ProgramPreviewProps) {
 	return (
-		<Link href={`/programok/${slug}`}>
+		<Link href={`/programok/${encodeURIComponent(slug)}`}>
 			<a>
 				<article className="flex gap-2 justify-between text-white">
-					<div className="md:p-4 py-3 px-4 bg-accent-dark rounded-2xl">
+					<div className="md:p-4 py-3 px-4 md:w-full bg-accent-dark rounded-2xl">
 						<div className="flex gap-2 justify-between mb-2 text-xs text-warmGray-400">
 							<div>
 								<span
@@ -56,7 +56,7 @@ export function ProgramPreview({
 						style={{ minWidth: "8ch" }}
 					>
 						<div>
-							<p className="pb-2 leading-tight">{`${
+							<p className="pb-2 leading-tight md:whitespace-nowrap">{`${
 								startDate.getMonth() + 1
 							}.${startDate.getDate()} ${startDate.toLocaleDateString("hu-HU", {
 								weekday: "long",

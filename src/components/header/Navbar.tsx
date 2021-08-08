@@ -5,36 +5,25 @@ import React from "react";
 import { FaBars } from "react-icons/fa";
 
 import navbarContent from "@/data/navbar.json";
-import { useBool, useLocalStorage } from "@/utils/hooks";
+import { useBool, useLocalStorage, useScrollDirection } from "@/utils/hooks";
 
 import { Toggle } from "../toggle/Toggle";
 import styles from "./Navbar.module.scss";
 
 export function Navbar() {
 	const [navbarOpen, navbarOpenHandlers] = useBool(false);
-	const [currentScrollY, setCurrentScrollY] = React.useState(0);
 	const [hide, hideHandlers] = useBool(false);
 	const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
+	const scrollDir = useScrollDirection("up", 52);
 
 	React.useEffect(() => {
-		// TODO: This re-renders the navbar every time the scroll position changes.
-		const controlNavbar = () => {
-			const currentScrollTop = window.scrollY;
-
-			if (currentScrollTop > currentScrollY) {
-				if (!hide) hideHandlers.setTrue();
-				if (navbarOpen) navbarOpenHandlers.setFalse();
-			} else if (hide) hideHandlers.setFalse();
-
-			setCurrentScrollY(currentScrollTop);
-		};
-
-		window.addEventListener("scroll", controlNavbar);
-		return () => {
-			window.removeEventListener("scroll", controlNavbar);
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentScrollY]);
+		if (scrollDir === "up") {
+			hideHandlers.setFalse();
+		} else {
+			hideHandlers.setTrue();
+		}
+		return () => {};
+	}, [hideHandlers, scrollDir]);
 
 	React.useEffect(() => {
 		if (darkMode) {
@@ -93,7 +82,7 @@ export function Navbar() {
 							navbarOpen ? "top-[52px]" : "top-[-208px]",
 						)}
 					>
-						<ul className="flex flex-col lg:flex-row lg:ml-auto w-full lg:w-auto list-none lowercase">
+						<ul className="flex flex-col lg:flex-row lg:ml-auto w-full lg:w-auto list-none">
 							{navbarContent.links.map(({ href, label }, i) => (
 								<li key={`${href}`} className="py-1 pl-2 lg:pl-0 w-full">
 									{href.startsWith("/") ? (
