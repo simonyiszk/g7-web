@@ -6,9 +6,7 @@ import { Leaderboard } from "@/components/leaderboard/Leaderboard";
 import { NewsSection } from "@/components/news/News";
 import { Programmes } from "@/components/program/Programmes";
 
-import styles from "./Index.module.scss";
-
-export default function Index() {
+export default function HomePage() {
 	return (
 		<Layout title="Főoldal">
 			<section className="my-4 mb-8 text-center">

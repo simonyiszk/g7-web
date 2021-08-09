@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
-import schdesignsvg from "@/assets/images/fullWhite.svg";
 import kirdevsvg from "@/assets/images/kirdev.svg";
 import schsvg from "@/assets/images/sch.svg";
+import schdesignsvg from "@/assets/images/schdesign.svg";
 import ssslpng from "@/assets/images/sssl.png";
 import viksvg from "@/assets/images/vik.svg";
 
@@ -16,23 +16,24 @@ export function Footer() {
 		<footer
 			className={clsx(styles.footer, "p-8 w-full text-white bg-accent-dark")}
 		>
-			<div className="container flex flex-col justify-center content-center mx-auto text-center">
-				<div className="flex flex-col items-center pb-4 mx-auto w-full lg:w-1/3">
+			<div className="container flex flex-col gap-8 justify-center content-center mx-auto text-center">
+				<div className="flex flex-col items-center mx-auto w-full lg:w-1/3">
 					<a href="https://sssl.sch.bme.hu/" target="_blank" rel="noreferrer">
 						<div className="relative pb-4 md:pb-0 w-40">
 							<Image src={ssslpng} alt="SSSL logó" placeholder="blur" />
 						</div>
 					</a>
 				</div>
-				<div className="flex justify-evenly pb-4 mx-auto w-full lg:w-1/3">
+				<div className="flex justify-evenly mx-auto w-full lg:w-1/3">
+					{/* TODO: Change links */}
 					<a href="https://www.instagram.com/schdesign.hu/">
-						<FaInstagram className="w-10 h-auto hover:text-orange-600" />
+						<FaInstagram className="w-16 h-auto hover:text-orange-600" />
 					</a>
 					<a href="https://www.facebook.com/schonherzdesignstudio/">
-						<FaFacebookSquare className="w-10 h-auto hover:text-orange-600" />
+						<FaFacebookSquare className="w-16 h-auto hover:text-orange-600" />
 					</a>
 				</div>
-				<div className="flex flex-col md:flex-row justify-evenly items-center pb-4 mx-auto md:w-2/3">
+				<div className="flex flex-col md:flex-row gap-4 justify-evenly items-center mx-auto md:w-2/3">
 					<a href="https://sch.bme.hu" target="_blank" rel="noreferrer">
 						<div className="relative pb-4 md:pb-0 w-40 h-24 md:h-24">
 							<Image

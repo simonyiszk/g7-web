@@ -37,10 +37,7 @@ export function Navbar() {
 	return (
 		<>
 			<Head>
-				<meta
-					name="color-scheme"
-					content={darkMode ? "dark light" : "light dark"}
-				/>
+				<meta name="color-scheme" content={darkMode ? "dark light" : "light"} />
 			</Head>
 
 			<header
@@ -82,9 +79,9 @@ export function Navbar() {
 							navbarOpen ? "top-[52px]" : "top-[-208px]",
 						)}
 					>
-						<ul className="flex flex-col lg:flex-row lg:ml-auto w-full lg:w-auto list-none">
+						<ul className="flex z-30 flex-col lg:flex-row lg:ml-auto w-full lg:w-auto list-none">
 							{navbarContent.links.map(({ href, label }, i) => (
-								<li key={`${href}`} className="py-1 pl-2 lg:pl-0 w-full">
+								<li key={`${href}`} className="z-30 py-1 pl-2 lg:pl-0 w-full">
 									{href.startsWith("/") ? (
 										<Link href={href}>
 											<a
@@ -126,6 +123,18 @@ export function Navbar() {
 					</nav>
 				</div>
 			</header>
+			<div
+				className={clsx(
+					styles.navbar,
+					"flex fixed z-10 justify-center p-1 w-full dark:text-white bg-yellow-400 dark:bg-yellow-600",
+					hide ? "top-0" : "top-[52px] lg:top-[68px] xl:top-[72px]",
+				)}
+			>
+				<h2 className="text-center">
+					Very long warning that only fits into multiple lines on smaller
+					screens like phones
+				</h2>
+			</div>
 		</>
 	);
 }

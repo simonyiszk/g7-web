@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function G7App({ Component, pageProps }: AppProps) {
 	return (
 		<React.StrictMode>
 			<Component {...pageProps} />

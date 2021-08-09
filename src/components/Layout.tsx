@@ -97,7 +97,7 @@ export function Layout({ children, title, ...restProps }: LayoutProps) {
 
 			<Navbar />
 
-			<div className="flex flex-col justify-between pt-[72px] min-h-screen">
+			<div className="flex flex-col justify-between pt-[128px] lg:pt-[104px] min-h-screen">
 				<main {...restProps}>{children}</main>
 
 				<Footer />

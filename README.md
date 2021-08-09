@@ -1,3 +1,11 @@
+# Frontend code for 2021 G7 web
+
+## Backend code at: https://github.com/simonyiszk/g7-web-backend
+
+---
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped from [next-starter-strict](https://github.com/kripod/next-starter-strict), built upon:
 
 - [Tailwind CSS](https://tailwindcss.com/)
