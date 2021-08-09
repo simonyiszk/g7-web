@@ -4,7 +4,7 @@ import type { ArticlePreviewProps } from "./ArticlePreview";
 import { ArticlePreview } from "./ArticlePreview";
 
 export type NewsSectionProps = {
-	articles?: ArticlePreviewProps[];
+	articles: ArticlePreviewProps[];
 	title?: string;
 	isDouble?: boolean;
 	lastX?: number;
@@ -23,11 +23,9 @@ export function NewsSection({
 			<div
 				className={clsx("grid grid-cols-1 gap-4", isDouble && "xl:grid-cols-2")}
 			>
-				<ArticlePreview />
-				<ArticlePreview />
-				<ArticlePreview />
-				<ArticlePreview />
-				<ArticlePreview />
+				{articlesToRender?.map((article) => {
+					return <ArticlePreview key={article.title} {...article} />;
+				})}
 			</div>
 		</section>
 	);

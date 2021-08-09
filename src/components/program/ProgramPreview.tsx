@@ -2,27 +2,23 @@ import clsx from "clsx";
 import Link from "next/link";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-export type ProgramPreviewProps = {
-	title?: string;
-	description?: string;
-	location?: string;
-	startDate?: Date;
-	endDate?: Date;
-	provider?: "Tankör" | "Gólyakörte";
-	slug?: string;
-};
+import type { EventType } from "@/@types/ApiBaseTypes";
+
+export type ProgramPreviewProps = EventType;
 
 export function ProgramPreview({
-	title = "Valami nagyon király program ",
-	description = "Lorem ipsum dolor sit amet",
-	location = "Schönherz",
-	startDate = new Date(),
-	endDate = new Date(),
-	provider = "Tankör",
-	slug = "asd123",
+	title,
+	previewDescription,
+	place,
+	heldDay,
+	heldInterval,
+	heldTimestamp,
+	category,
+	url,
 }: ProgramPreviewProps) {
+	const startDate = new Date(heldTimestamp);
 	return (
-		<Link href={`/programok/${encodeURIComponent(slug)}`}>
+		<Link href={`/programok/${encodeURIComponent(url)}`}>
 			<a>
 				<article className="flex gap-2 justify-between text-white">
 					<div className="md:p-4 py-3 px-4 md:w-full bg-accent-dark rounded-2xl">
@@ -31,14 +27,14 @@ export function ProgramPreview({
 								<span
 									className={clsx(
 										"float-left mr-1 w-3 h-3 rounded-full",
-										provider === "Tankör" && "bg-blue-500",
-										provider === "Gólyakörte" && "bg-green-500",
+										category === "Tankör" && "bg-blue-500",
+										category === "Gólyakörte" && "bg-green-500",
 									)}
 								/>
-								<h5 className="float-right">{provider}</h5>
+								<h5 className="float-right">{category}</h5>
 							</div>
 							<div>
-								<h6 className="inline-block float-left mr-1">{location}</h6>
+								<h6 className="inline-block float-left mr-1">{place}</h6>
 								<span className="float-right">
 									<FaMapMarkerAlt className="w-3 h-3 text-warmGray-200" />
 								</span>
@@ -48,7 +44,7 @@ export function ProgramPreview({
 							{title}
 						</h4>
 						<p className="mb-2 text-justify text-warmGray-200 line-clamp-5">
-							{description}
+							{previewDescription}
 						</p>
 					</div>
 					<div
@@ -63,7 +59,8 @@ export function ProgramPreview({
 							})}`}</p>
 							<p className="font-semibold">{`${startDate.getHours()}:${startDate.getMinutes()}`}</p>
 							<p className="font-semibold leading-3">-</p>
-							<p className="font-semibold">{`${endDate.getHours()}:${endDate.getMinutes()}`}</p>
+							{/* TODO: fix dates */}
+							<p className="font-semibold">{`${startDate.getHours()}:${startDate.getMinutes()}`}</p>
 						</div>
 					</div>
 				</article>

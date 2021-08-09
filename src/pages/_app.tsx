@@ -3,7 +3,6 @@ import "@fontsource/noto-sans/700.css";
 import "@/styles.css";
 
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import React from "react";
 
 export default function G7App({ Component, pageProps }: AppProps) {

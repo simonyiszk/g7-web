@@ -1,12 +1,43 @@
 import clsx from "clsx";
+import type {
+	GetServerSidePropsContext,
+	InferGetServerSidePropsType,
+} from "next";
+import type { ParsedUrlQuery } from "querystring";
 
+import type {
+	EventsRouteResponse,
+	NewsRouteResponse,
+} from "@/@types/ApiResponses";
 import { BucketListContainer } from "@/components/bucketList/BucketListContainer";
 import { Layout } from "@/components/Layout";
 import { Leaderboard } from "@/components/leaderboard/Leaderboard";
-import { NewsSection } from "@/components/news/News";
+import { NewsSection } from "@/components/news/NewsSection";
 import { Programmes } from "@/components/program/Programmes";
 
-export default function HomePage() {
+export async function getServerSideProps<
+	Q extends ParsedUrlQuery = ParsedUrlQuery,
+>(context: GetServerSidePropsContext<Q>) {
+	const rawNews: NewsRouteResponse = await (
+		await fetch(`http://${process.env.API_BASE_URL}/news`)
+	).json();
+	const rawEvents: EventsRouteResponse = await (
+		await fetch(`http://${process.env.API_BASE_URL}/events`)
+	).json();
+
+	return {
+		props: {
+			rawNews,
+			rawEvents,
+		},
+	};
+}
+
+export default function HomePage({
+	rawNews,
+	rawEvents,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+	console.log(rawNews.news);
 	return (
 		<Layout title="Főoldal">
 			<section className="my-4 mb-8 text-center">
@@ -16,8 +47,11 @@ export default function HomePage() {
 			</section>
 			<div className="container grid grid-cols-1 xl:grid-cols-[2fr,minmax(320px,1fr)] mx-auto">
 				<div>
-					<NewsSection title="Friss hírek" />
-					<Programmes title="Közelgő programok" />
+					<NewsSection title="Friss hírek" articles={rawNews.news} />
+					<Programmes
+						title="Közelgő programok"
+						programPreviews={rawEvents.eventsToday}
+					/>
 				</div>
 				<div className="">
 					<div className="sticky top-4 mb-8">
