@@ -25,7 +25,7 @@ export function ArticlePreview({
 				{brief}
 			</p>
 			<p className="text-right text-warmGray-400">
-				Utoljára módosítva: {new Date(timestamp).toLocaleString()}
+				Utoljára módosítva: {new Date(timestamp * 1000).toLocaleString("hu-HU")}
 			</p>
 		</article>
 		// 	</a>

@@ -10,19 +10,19 @@ import type {
 	NewsRouteResponse,
 } from "@/@types/ApiResponses";
 import { BucketListContainer } from "@/components/bucketList/BucketListContainer";
+import { EventsSection } from "@/components/event/EventsSection";
 import { Layout } from "@/components/Layout";
 import { Leaderboard } from "@/components/leaderboard/Leaderboard";
 import { NewsSection } from "@/components/news/NewsSection";
-import { Programmes } from "@/components/program/Programmes";
 
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
 	const rawNews: NewsRouteResponse = await (
-		await fetch(`http://${process.env.API_BASE_URL}/news`)
+		await fetch(`${process.env.API_BASE_URL}/news`)
 	).json();
 	const rawEvents: EventsRouteResponse = await (
-		await fetch(`http://${process.env.API_BASE_URL}/events`)
+		await fetch(`${process.env.API_BASE_URL}/events`)
 	).json();
 
 	return {
@@ -48,7 +48,7 @@ export default function HomePage({
 			<div className="container grid grid-cols-1 xl:grid-cols-[2fr,minmax(320px,1fr)] mx-auto">
 				<div>
 					<NewsSection title="Friss hírek" articles={rawNews.news} />
-					<Programmes
+					<EventsSection
 						title="Közelgő programok"
 						programPreviews={rawEvents.eventsToday}
 					/>

@@ -69,7 +69,7 @@ export function Footer() {
 				</div>
 				<a
 					className="block mx-auto mt-4 text-xs text-gray-400 hover:underline w-fit"
-					href="https://sssl.sch.bme.hu/"
+					href="https://github.com/simonyiszk/g7-web-frontend"
 					target="_blank"
 					rel="noreferrer"
 				>

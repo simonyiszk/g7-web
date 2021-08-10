@@ -9,15 +9,15 @@ import type {
 	EventsRouteResponse,
 	NewsRouteResponse,
 } from "@/@types/ApiResponses";
+import { EventsSection } from "@/components/event/EventsSection";
 import { Layout } from "@/components/Layout";
 import { NewsSection } from "@/components/news/NewsSection";
-import { Programmes } from "@/components/program/Programmes";
 
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
 	const rawEvents: EventsRouteResponse = await (
-		await fetch(`http://${process.env.API_BASE_URL}/events`)
+		await fetch(`${process.env.API_BASE_URL}/events`)
 	).json();
 
 	return {
@@ -32,7 +32,7 @@ export default function ProgramokPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
 		<Layout className="pt-4" title="Programok">
-			<Programmes isDouble programPreviews={rawEvents.allEvents} />
+			<EventsSection isDouble programPreviews={rawEvents.allEvents} />
 		</Layout>
 	);
 }

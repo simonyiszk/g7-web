@@ -4,9 +4,9 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 import type { EventType } from "@/@types/ApiBaseTypes";
 
-export type ProgramPreviewProps = EventType;
+export type EventPreviewProps = EventType;
 
-export function ProgramPreview({
+export function EventPreview({
 	title,
 	previewDescription,
 	place,
@@ -15,20 +15,20 @@ export function ProgramPreview({
 	heldTimestamp,
 	category,
 	url,
-}: ProgramPreviewProps) {
+}: EventPreviewProps) {
 	const startDate = new Date(heldTimestamp);
 	return (
 		<Link href={`/programok/${encodeURIComponent(url)}`}>
-			<a>
+			<a className="h-fit">
 				<article className="flex gap-2 justify-between text-white">
 					<div className="md:p-4 py-3 px-4 md:w-full bg-accent-dark rounded-2xl">
 						<div className="flex gap-2 justify-between mb-2 text-xs text-warmGray-400">
 							<div>
 								<span
 									className={clsx(
-										"float-left mr-1 w-3 h-3 rounded-full",
+										"float-left mr-1 w-3 h-3 bg-green-500 rounded-full",
 										category === "Tankör" && "bg-blue-500",
-										category === "Gólyakörte" && "bg-green-500",
+										category === "G7" && "bg-orange-500",
 									)}
 								/>
 								<h5 className="float-right">{category}</h5>

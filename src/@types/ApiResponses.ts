@@ -21,3 +21,10 @@ export type EventsRouteResponse = {
 	userPreview: UserPreview;
 	warningMessage: string;
 };
+
+/**
+ * /api/home
+ */
+export type HomeRouteResponse = {
+	leaderboardVisible: boolean;
+};
