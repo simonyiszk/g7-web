@@ -13,8 +13,7 @@
 		"lint": "run-p lint:*",
 		"lint:eslint": "eslint --ext .js,.ts,.tsx --ignore-path ./.gitignore .",
 		"lint:prettier": "prettier --check --ignore-path ./.gitignore .",
-		"lint:typescript": "tsc",
-		"postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks"
+		"lint:typescript": "tsc"
 	},
 	"lint-staged": {
 		"*": "prettier --write --ignore-unknown",

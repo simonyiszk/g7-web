@@ -4,6 +4,25 @@
 
 ---
 
+## Docker build
+
+```bash
+    docker build . -t g7-web-frontend
+```
+
+## Docker run
+
+```bash
+   docker run -p 3000:3000 -e API_BASE_URL=127.0.0.1:8080/api --network host g7-web-frontend
+```
+
+## Docker publish
+
+```bash
+    docker image tag g7-web-frontend:latest registry.k8s.sch.bme.hu/g7-web/g7-web-frontend:latest
+    docker push registry.k8s.sch.bme.hu/g7-web/g7-web-frontend:latest
+```
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped from [next-starter-strict](https://github.com/kripod/next-starter-strict), built upon:
