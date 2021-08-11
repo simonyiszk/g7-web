@@ -7,6 +7,7 @@ import type { ParsedUrlQuery } from "querystring";
 
 import type {
 	EventsRouteResponse,
+	HomeRouteResponse,
 	NewsRouteResponse,
 } from "@/@types/ApiResponses";
 import { BucketListContainer } from "@/components/bucketList/BucketListContainer";
@@ -18,26 +19,20 @@ import { NewsSection } from "@/components/news/NewsSection";
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
-	const rawNews: NewsRouteResponse = await (
-		await fetch(`${process.env.API_BASE_URL}/news`)
-	).json();
-	const rawEvents: EventsRouteResponse = await (
-		await fetch(`${process.env.API_BASE_URL}/events`)
+	const data: HomeRouteResponse = await (
+		await fetch(`${process.env.API_BASE_URL}/home`)
 	).json();
 
 	return {
 		props: {
-			rawNews,
-			rawEvents,
+			data,
 		},
 	};
 }
 
 export default function HomePage({
-	rawNews,
-	rawEvents,
+	data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-	console.log(rawNews.news);
 	return (
 		<Layout title="Főoldal">
 			<section className="my-4 mb-8 text-center">
@@ -47,27 +42,15 @@ export default function HomePage({
 			</section>
 			<div className="container grid grid-cols-1 xl:grid-cols-[2fr,minmax(320px,1fr)] mx-auto">
 				<div>
-					<NewsSection title="Friss hírek" articles={rawNews.news} />
+					<NewsSection title="Friss hírek" articles={data.news} />
 					<EventsSection
 						title="Közelgő programok"
-						programPreviews={rawEvents.eventsToday}
+						programPreviews={data.eventsToday}
 					/>
 				</div>
 				<div className="">
 					<div className="sticky top-4 mb-8">
-						<Leaderboard
-							data={[
-								{ name: "I04", points: 1200 },
-								{ name: "I07", points: 1150 },
-								{ name: "I02", points: 128 },
-								{ name: "I03", points: 205 },
-								{ name: "I03", points: 205 },
-								{ name: "I03", points: 205 },
-								{ name: "I03", points: 205 },
-								{ name: "I03", points: 205 },
-								{ name: "I03", points: 205 },
-							]}
-						/>
+						<Leaderboard data={data.leaderBoard} />
 					</div>
 				</div>
 			</div>

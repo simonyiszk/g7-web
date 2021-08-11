@@ -19,9 +19,7 @@ export function EventsSection({
 	return (
 		<section className="container px-4 mx-auto mb-8">
 			<h2 className="mb-6 text-4xl font-bold">{title}</h2>
-			<div
-				className={clsx("grid grid-cols-1 gap-4", isDouble && "xl:grid-cols-2")}
-			>
+			<div className={clsx(isDouble && "column-count-2")}>
 				{programPreviews.map((event) => {
 					return <EventPreview key={event.url} {...event} />;
 				})}

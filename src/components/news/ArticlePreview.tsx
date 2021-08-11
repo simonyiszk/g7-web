@@ -11,6 +11,7 @@ export function ArticlePreview({
 	imageUrl,
 	highlighted,
 }: ArticlePreviewProps) {
+	const date = new Date(timestamp * 1000);
 	return (
 		// <Link
 		// 	href={{
@@ -25,7 +26,12 @@ export function ArticlePreview({
 				{brief}
 			</p>
 			<p className="text-right text-warmGray-400">
-				Utoljára módosítva: {new Date(timestamp * 1000).toLocaleString("hu-HU")}
+				{`Utoljára módosítva: ${date.toLocaleDateString("hu-HU", {
+					month: "short",
+					day: "2-digit",
+				})} ${date.toLocaleTimeString("hu-HU", {
+					timeStyle: "short",
+				})}`}
 			</p>
 		</article>
 		// 	</a>

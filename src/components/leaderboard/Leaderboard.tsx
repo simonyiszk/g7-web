@@ -1,9 +1,10 @@
 import clsx from "clsx";
 
+import type { LeaderboardEntry } from "@/@types/ApiBaseTypes";
 import { useBool } from "@/utils/hooks";
 
 export type LeaderboardProps = {
-	data: { name: string; points: number }[];
+	data: LeaderboardEntry[];
 	isHidden?: boolean;
 	topX?: number;
 };
@@ -14,7 +15,7 @@ export function Leaderboard({
 	isHidden = false,
 }: LeaderboardProps) {
 	const [isExpanded, expandedHandlers] = useBool(false);
-	data.sort((a, b) => b.points - a.points);
+	data.sort((a, b) => b.score - a.score);
 	const slicedData = isExpanded ? data : data.slice(0, topX);
 
 	return (
@@ -38,7 +39,7 @@ export function Leaderboard({
 								<p>
 									{i + 1}. {entry.name}
 								</p>
-								<p className="text-right">{entry.points}</p>
+								<p className="text-right">{entry.score}</p>
 							</div>
 						);
 					})}

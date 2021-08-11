@@ -30,6 +30,7 @@ export async function getServerSideProps<
 export default function ProgramokPage({
 	rawEvents,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+	console.log(rawEvents.allEvents);
 	return (
 		<Layout className="pt-4" title="Programok">
 			<EventsSection isDouble programPreviews={rawEvents.allEvents} />

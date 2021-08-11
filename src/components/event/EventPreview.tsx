@@ -16,10 +16,15 @@ export function EventPreview({
 	category,
 	url,
 }: EventPreviewProps) {
-	const startDate = new Date(heldTimestamp);
+	const startDate = new Date(heldTimestamp * 1000);
 	return (
-		<Link href={`/programok/${encodeURIComponent(url)}`}>
-			<a className="h-fit">
+		<Link
+			href={{
+				pathname: "/programok/[url]",
+				query: { url },
+			}}
+		>
+			<a className="block mb-4 h-fit">
 				<article className="flex gap-2 justify-between text-white">
 					<div className="md:p-4 py-3 px-4 md:w-full bg-accent-dark rounded-2xl">
 						<div className="flex gap-2 justify-between mb-2 text-xs text-warmGray-400">
@@ -48,19 +53,25 @@ export function EventPreview({
 						</p>
 					</div>
 					<div
-						className="flex justify-center items-center md:p-4 py-3 px-4 text-center bg-accent-dark rounded-2xl"
-						style={{ minWidth: "8ch" }}
+						className="flex justify-center items-center py-3 px-4 text-center bg-accent-dark rounded-2xl"
+						style={{ minWidth: "100px" }}
 					>
 						<div>
-							<p className="pb-2 leading-tight md:whitespace-nowrap">{`${
+							<p className="leading-tight md:whitespace-nowrap">{`${
 								startDate.getMonth() + 1
-							}.${startDate.getDate()} ${startDate.toLocaleDateString("hu-HU", {
-								weekday: "long",
-							})}`}</p>
+							}.${startDate.getDate()}`}</p>
+							<p className="pb-2 leading-tight md:whitespace-nowrap">{`${startDate.toLocaleDateString(
+								"hu-HU",
+								{
+									weekday: "long",
+								},
+							)}`}</p>
 							<p className="font-semibold">{`${startDate.getHours()}:${startDate.getMinutes()}`}</p>
 							<p className="font-semibold leading-3">-</p>
 							{/* TODO: fix dates */}
-							<p className="font-semibold">{`${startDate.getHours()}:${startDate.getMinutes()}`}</p>
+							<p className="font-semibold">{`${
+								startDate.getHours() + 1
+							}:${startDate.getMinutes()}`}</p>
 						</div>
 					</div>
 				</article>

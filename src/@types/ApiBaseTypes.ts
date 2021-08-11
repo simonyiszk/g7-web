@@ -26,3 +26,27 @@ export type EventType = {
 	title: string;
 	url: string;
 };
+
+export type LeaderboardEntry = {
+	name: string;
+	score: number;
+};
+
+export type AchievementStatus =
+	| "NOT_SUBMITTED"
+	| "SUBMITTED"
+	| "ACCEPTED"
+	| "REJECTED"
+	| "NOT_LOGGED_IN";
+
+export type AchievementEntry = {
+	achievement: {
+		availableTo: number;
+		category: string;
+		id: number;
+		maxScore: number;
+		title: string;
+		type: "IMAGE" | "TEXT";
+	};
+	status: AchievementStatus;
+};

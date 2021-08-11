@@ -1,4 +1,10 @@
-import type { EventType, NewsArticle, UserPreview } from "./ApiBaseTypes";
+import type {
+	AchievementEntry,
+	EventType,
+	LeaderboardEntry,
+	NewsArticle,
+	UserPreview,
+} from "./ApiBaseTypes";
 
 /**
  * /api/news
@@ -26,5 +32,8 @@ export type EventsRouteResponse = {
  * /api/home
  */
 export type HomeRouteResponse = {
-	leaderboardVisible: boolean;
+	achievements: AchievementEntry[];
+	eventsToday: EventType[];
+	leaderBoard: LeaderboardEntry[];
+	news: NewsArticle[];
 };
