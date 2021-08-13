@@ -15,14 +15,29 @@ export type NewsArticle = {
 	highlighted: boolean;
 };
 
-export type EventType = {
+export type EventPreviewType = {
 	category: string;
-	heldDay: string;
-	heldInterval: string;
-	heldTimestamp: number;
+	timestampEnd: number;
+	timestampStart: number;
 	place: string;
 	previewDescription: string;
 	previewImageUrl: string;
+	title: string;
+	url: string;
+};
+
+export type EventType = {
+	category: string;
+	description: string;
+	extraButtonTitle: string;
+	extraButtonUrl: string;
+	fullImageUrl: string;
+	ogDescription: string;
+	ogImage: string;
+	ogTitle: string;
+	place: string;
+	timestampEnd: number;
+	timestampStart: number;
 	title: string;
 	url: string;
 };
@@ -39,14 +54,16 @@ export type AchievementStatus =
 	| "REJECTED"
 	| "NOT_LOGGED_IN";
 
+export type AchievementType = {
+	availableTo: number;
+	category: string;
+	id: number;
+	maxScore: number;
+	title: string;
+	type: "IMAGE" | "TEXT";
+};
+
 export type AchievementEntry = {
-	achievement: {
-		availableTo: number;
-		category: string;
-		id: number;
-		maxScore: number;
-		title: string;
-		type: "IMAGE" | "TEXT";
-	};
+	achievement: AchievementType;
 	status: AchievementStatus;
 };

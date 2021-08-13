@@ -20,7 +20,7 @@ export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
 	const data: HomeRouteResponse = await (
-		await fetch(`${process.env.API_BASE_URL}/home`)
+		await fetch(`${process.env.API_BASE_URL}home`)
 	).json();
 
 	return {

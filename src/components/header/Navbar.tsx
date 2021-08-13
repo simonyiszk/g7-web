@@ -21,9 +21,10 @@ export function Navbar() {
 			hideHandlers.setFalse();
 		} else {
 			hideHandlers.setTrue();
+			navbarOpenHandlers.setFalse();
 		}
 		return () => {};
-	}, [hideHandlers, scrollDir]);
+	}, [hideHandlers, navbarOpenHandlers, scrollDir]);
 
 	React.useEffect(() => {
 		if (darkMode) {

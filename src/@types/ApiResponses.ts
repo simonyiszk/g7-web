@@ -1,6 +1,6 @@
 import type {
 	AchievementEntry,
-	EventType,
+	EventPreviewType,
 	LeaderboardEntry,
 	NewsArticle,
 	UserPreview,
@@ -22,8 +22,8 @@ export type NewsRouteResponse = {
  * /api/events
  */
 export type EventsRouteResponse = {
-	allEvents: EventType[];
-	eventsToday: EventType[];
+	allEvents: EventPreviewType[];
+	eventsToday: EventPreviewType[];
 	userPreview: UserPreview;
 	warningMessage: string;
 };
@@ -33,7 +33,8 @@ export type EventsRouteResponse = {
  */
 export type HomeRouteResponse = {
 	achievements: AchievementEntry[];
-	eventsToday: EventType[];
+	eventsToday: EventPreviewType[];
 	leaderBoard: LeaderboardEntry[];
+	leaderBoardVisible: boolean;
 	news: NewsArticle[];
 };
