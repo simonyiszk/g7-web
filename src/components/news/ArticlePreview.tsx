@@ -15,7 +15,6 @@ export function ArticlePreview({
 	highlighted,
 }: ArticlePreviewProps) {
 	const date = new Date(timestamp * 1000);
-	console.log(highlighted);
 	return (
 		// <Link
 		// 	href={{

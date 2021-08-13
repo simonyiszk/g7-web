@@ -19,8 +19,9 @@ import { NewsSection } from "@/components/news/NewsSection";
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
+	console.log("gssp ", process.env.NEXT_PUBLIC_BACKEND_BASE_URL);
 	const data: HomeRouteResponse = await (
-		await fetch(`${process.env.API_BASE_URL}home`)
+		await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}home`)
 	).json();
 
 	return {

@@ -25,11 +25,10 @@ export function Footer() {
 					</a>
 				</div>
 				<div className="flex justify-evenly mx-auto w-full lg:w-1/3">
-					{/* TODO: Change links */}
-					<a href="https://www.instagram.com/schdesign.hu/">
+					<a href="https://www.instagram.com/bme_vik_golyahet/">
 						<FaInstagram className="w-16 h-auto hover:text-orange-600" />
 					</a>
-					<a href="https://www.facebook.com/schonherzdesignstudio/">
+					<a href="https://www.facebook.com/bmevikgolyahet">
 						<FaFacebookSquare className="w-16 h-auto hover:text-orange-600" />
 					</a>
 				</div>

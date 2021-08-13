@@ -10,7 +10,7 @@ export default function EventPage() {
 	const router = useRouter();
 	const { url } = router.query;
 	const { data, error, mutate } = useSWR<{ event: EventType }>(
-		`${process.env.API_BASE_URL}events/${url}`,
+		`${process.env.NEXT_PUBLIC_API_BASE_URL}events/${url}`,
 		fetcher,
 	);
 

@@ -17,7 +17,7 @@ export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
 	const rawEvents: EventsRouteResponse = await (
-		await fetch(`${process.env.API_BASE_URL}events`)
+		await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}events`)
 	).json();
 
 	return {
