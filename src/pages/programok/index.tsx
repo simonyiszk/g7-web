@@ -1,17 +1,12 @@
 import type {
-	GetServerSideProps,
 	GetServerSidePropsContext,
 	InferGetServerSidePropsType,
 } from "next";
 import type { ParsedUrlQuery } from "querystring";
 
-import type {
-	EventsRouteResponse,
-	NewsRouteResponse,
-} from "@/@types/ApiResponses";
+import type { EventsRouteResponse } from "@/@types/ApiResponses";
 import { EventsSection } from "@/components/event/EventsSection";
 import { Layout } from "@/components/Layout";
-import { NewsSection } from "@/components/news/NewsSection";
 
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
@@ -30,10 +25,9 @@ export async function getServerSideProps<
 export default function ProgramokPage({
 	rawEvents,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-	console.log(rawEvents.allEvents);
 	return (
-		<Layout className="pt-4" title="Programok">
-			<EventsSection isDouble programPreviews={rawEvents.allEvents} />
+		<Layout className="pt-8" title="Programok">
+			<EventsSection programPreviews={rawEvents.allEvents} />
 		</Layout>
 	);
 }

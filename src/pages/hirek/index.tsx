@@ -28,7 +28,7 @@ export default function HirekPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
 		<Layout className="pt-4" title="Hírek">
-			<NewsSection isDouble articles={rawNews.news} />
+			<NewsSection articles={rawNews.news} />
 		</Layout>
 	);
 }

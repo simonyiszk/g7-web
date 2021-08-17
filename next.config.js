@@ -2,8 +2,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer");
 const withPlugins = require("next-compose-plugins");
 const withTM = require("next-transpile-modules")(["@fontsource/noto-sans"]);
 
-console.log("bs ", process.env.BACKEND_BASE_URL);
-
 const nextConfig = {
 	images: {
 		domains: ["g7.sch.bme.hu"],

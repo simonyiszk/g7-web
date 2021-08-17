@@ -33,7 +33,7 @@ export type EventsRouteResponse = {
  */
 export type HomeRouteResponse = {
 	achievements: AchievementEntry[];
-	eventsToday: EventPreviewType[];
+	upcomingEvents: EventPreviewType[];
 	leaderBoard: LeaderboardEntry[];
 	leaderBoardVisible: boolean;
 	news: NewsArticle[];

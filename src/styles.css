@@ -40,4 +40,12 @@ html {
 	@apply font-NotoSans;
 	@apply bg-white text-black;
 	@apply dark:bg-darkBG dark:text-white;
+	background-image: url("/assets/images/g7bckg_day_release_final.svg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+html.dark body {
+	background-image: url("/assets/images/g7bckg_night_release_final.svg");
 }

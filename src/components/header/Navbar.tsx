@@ -1,9 +1,11 @@
 import clsx from "clsx";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaBars } from "react-icons/fa";
 
+import logo from "@/assets/images/logo.png";
 import navbarContent from "@/data/navbar.json";
 import { useBool, useLocalStorage, useScrollDirection } from "@/utils/hooks";
 
@@ -45,15 +47,20 @@ export function Navbar() {
 				className={clsx(
 					styles.navbar,
 					"flex fixed z-40 flex-wrap justify-between items-center -mb-px w-full text-white bg-accent-dark",
-					hide ? styles.hide : "top-0",
+					hide ? "top-[-74px]" : "top-0",
 				)}
 				id="header"
 			>
 				<div className="flex relative z-40 flex-wrap justify-between items-center py-2 px-4 mx-auto w-full bg-accent-dark">
-					<div className="flex lg:block relative lg:static z-50 justify-between lg:justify-start w-full lg:w-auto bg-accent-dark">
+					<div className="flex lg:block relative lg:static z-50 justify-between lg:justify-start items-center w-full lg:w-auto bg-accent-dark">
 						<Link href="/">
-							<a className="text-2xl lg:text-4xl font-bold no-underline">
-								G7 2021
+							<a className="text-2xl lg:text-4xl font-bold no-underline h-fit">
+								<div className="flex flex-row items-center">
+									<div className="flex relative items-center mr-2 lg:mr-4 w-8 lg:w-10 xl:w-12 h-8 lg:h-10 xl:h-12">
+										<Image src={logo} layout="fill" />
+									</div>
+									G7 2021
+								</div>
 							</a>
 						</Link>
 						<div className="flex lg:hidden gap-2 items-center">
@@ -76,7 +83,7 @@ export function Navbar() {
 
 					<nav
 						className={clsx(
-							"lg:flex fixed lg:relative lg:top-0 right-0 z-30 flex-grow items-center w-full lg:w-auto bg-accent-dark transition-all transform-gpu",
+							"lg:flex fixed lg:relative lg:top-0 right-0 z-30 flex-grow items-center w-full lg:w-auto lowercase bg-accent-dark transition-all transform-gpu",
 							navbarOpen ? "top-[52px]" : "top-[-208px]",
 						)}
 					>
@@ -112,7 +119,7 @@ export function Navbar() {
 								</li>
 							))}
 						</ul>
-						<div className="hidden lg:block p-2 pl-8">
+						<div className="hidden lg:flex items-center p-2 pl-8">
 							<Toggle
 								id="darkModeToggle2"
 								defaultChecked={darkMode}
@@ -124,7 +131,7 @@ export function Navbar() {
 					</nav>
 				</div>
 			</header>
-			<div
+			{/* <div
 				className={clsx(
 					styles.navbar,
 					"flex fixed z-10 justify-center p-1 w-full dark:text-white bg-yellow-400 dark:bg-yellow-600",
@@ -135,7 +142,7 @@ export function Navbar() {
 					Very long warning that only fits into multiple lines on smaller
 					screens like phones
 				</h2>
-			</div>
+			</div> */}
 		</>
 	);
 }
