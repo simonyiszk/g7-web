@@ -1,8 +1,6 @@
 {
 	"links": [
 		{ "href": "/hirek", "label": "Hírek" },
-		{ "href": "/programok", "label": "Programok" },
-		{ "href": "/bucketlist", "label": "Bucket List" },
-		{ "href": "/me", "label": "Profil" }
+		{ "href": "/programok", "label": "Programok" }
 	]
 }
