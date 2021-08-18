@@ -1,0 +1,16 @@
+@keyframes highlight {
+	0% {
+		box-shadow: 0 0 0 0 rgba(244, 219, 64, 0.5);
+	}
+	50% {
+		box-shadow: 0 0 0 20px rgba(244, 219, 64, 0);
+	}
+}
+
+.highlighted {
+	border: 2px solid #f4db40;
+	animation-name: highlight;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease;
+}

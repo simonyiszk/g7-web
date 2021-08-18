@@ -51,14 +51,27 @@ export function Footer() {
 						</div>
 					</a>
 				</div>
-				<a
-					className="block mx-auto mt-4 text-xs text-gray-400 hover:underline w-fit"
-					href="https://github.com/simonyiszk/g7-web-frontend"
-					target="_blank"
-					rel="noreferrer"
-				>
-					{"</>"} with ♥ by kir-dev & schdesign, © SSSL 2021
-				</a>
+				<div className="mx-auto mt-4 text-xs text-gray-400 w-fit">
+					{"</>"} with ♥ by{" "}
+					<a
+						className="hover:underline"
+						href="https://github.com/simonyiszk/g7-web-backend"
+						target="_blank"
+						rel="noreferrer"
+					>
+						kir-dev
+					</a>
+					{" & "}
+					<a
+						className="hover:underline"
+						href="https://github.com/simonyiszk/g7-web-frontend"
+						target="_blank"
+						rel="noreferrer"
+					>
+						schdesign
+					</a>
+					, © SSSL 2021
+				</div>
 			</div>
 		</footer>
 	);

@@ -16,7 +16,7 @@ export function EventsSection({
 	title = "Programok",
 }: EventsSectionProps) {
 	return (
-		<section className="container px-4 lg:px-12 xl:px-32 2xl:px-48 mx-auto mb-8">
+		<section className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto mb-8">
 			<h2 className="mb-6 text-4xl font-bold">{title}</h2>
 			<div className={clsx("grid grid-cols-1 gap-4")}>
 				{programPreviews.map((event) => {

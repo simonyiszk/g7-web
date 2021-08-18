@@ -30,7 +30,6 @@ export async function getServerSideProps<
 export default function HomePage({
 	data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-	console.log(data.upcomingEvents);
 	return (
 		<Layout title="Főoldal">
 			<Hero />

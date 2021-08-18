@@ -21,7 +21,10 @@ export default function EventPage() {
 	}
 
 	return (
-		<Layout title={data.event.title} className="container px-4 mx-auto">
+		<Layout
+			title={data.event.title}
+			className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto"
+		>
 			<h1 className="mb-2 text-4xl font-bold">{data.event.title}</h1>
 			<h2 className="mb-1 text-xl">
 				Időpont:{" "}
@@ -38,7 +41,9 @@ export default function EventPage() {
 					timeStyle: "short",
 				})}
 			</h2>
-			<h3 className="mb-4 text-xl">Helyszín: {data.event.place}</h3>
+			{data.event.place && data.event.place !== "" && (
+				<h3 className="mb-4 text-xl">Helyszín: {data.event.place}</h3>
+			)}
 			<p className="mb-2">{data.event.description}</p>
 
 			{data.event.fullImageUrl && data.event.fullImageUrl !== "" && (

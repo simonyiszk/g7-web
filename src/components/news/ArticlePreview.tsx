@@ -5,6 +5,8 @@ import Link from "next/link";
 import type { NewsArticle } from "@/@types/ApiBaseTypes";
 import { cdnImageLoader } from "@/utils/utils";
 
+import styles from "./ArticlePreview.module.scss";
+
 export type ArticlePreviewProps = NewsArticle;
 
 export function ArticlePreview({
@@ -25,8 +27,8 @@ export function ArticlePreview({
 		// 	<a>
 		<article
 			className={clsx(
-				"md:p-4 py-3 px-4 text-white bg-accent-dark rounded-2xl",
-				highlighted && "border-2 border-yellow-500",
+				"md:p-4 py-3 px-4 text-white rounded-2xl bg-blur-7",
+				highlighted && styles.highlighted,
 			)}
 		>
 			<h4 className="mb-2 text-xl font-medium line-clamp-2">{title}</h4>
