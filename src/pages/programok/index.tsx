@@ -13,7 +13,7 @@ import { EventPreview } from "@/components/event/EventPreview";
 import { EventsSection } from "@/components/event/EventsSection";
 import { Layout } from "@/components/Layout";
 
-type Days = "Hétfő" | "Kedd" | "Szerda" | "Csütörtök" | "Péntek";
+type Days = "Vasárnap" | "Hétfő" | "Kedd" | "Szerda" | "Csütörtök" | "Péntek";
 
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
@@ -23,6 +23,7 @@ export async function getServerSideProps<
 	).json();
 
 	const events: { [key in Days]: EventPreviewType[] } = {
+		Vasárnap: [],
 		Hétfő: [],
 		Kedd: [],
 		Szerda: [],
@@ -74,7 +75,7 @@ export default function ProgramokPage({
 									)}
 								>
 									{day.charAt(0)}
-									{(index === 2 || index === 3) && day.charAt(1)}
+									{(index === 3 || index === 4) && day.charAt(1)}
 								</a>
 							</Link>
 						);
