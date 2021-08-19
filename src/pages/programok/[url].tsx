@@ -1,3 +1,4 @@
+import getConfig from "next/config";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -7,10 +8,18 @@ import { Layout } from "@/components/Layout";
 import { cdnImageLoader, fetcher } from "@/utils/utils";
 
 export default function EventPage() {
+	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
 	const { url } = router.query;
+	function getUrl(p: string) {
+		return `${
+			process.env.NEXT_PUBLIC_API_BASE_URL ??
+			publicRuntimeConfig?.NEXT_PUBLIC_API_BASE_URL ??
+			"errnoenv"
+		}events/${p}`;
+	}
 	const { data, error, mutate } = useSWR<{ event: EventType }>(
-		`${process.env.NEXT_PUBLIC_API_BASE_URL}events/${url}`,
+		getUrl(url as string),
 		fetcher,
 	);
 

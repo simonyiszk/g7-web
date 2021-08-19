@@ -16,7 +16,7 @@ export function Navbar() {
 	const [navbarOpen, navbarOpenHandlers] = useBool(false);
 	const [hide, hideHandlers] = useBool(false);
 	const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
-	const scrollDir = useScrollDirection("up", 52);
+	const scrollDir = useScrollDirection("up", 0);
 
 	React.useEffect(() => {
 		if (scrollDir === "up") {
@@ -94,7 +94,7 @@ export function Navbar() {
 										<Link href={href}>
 											<a
 												className={clsx(
-													"inline-block py-2 px-4 lg:px-5 w-max text-xl xl:text-2xl font-medium",
+													"inline-block py-2 px-4 lg:px-5 w-full text-xl xl:text-2xl font-medium",
 													i === 0 && "lg:pl-0",
 													i === navbarContent.links.length - 1 && "lg:pr-0",
 												)}

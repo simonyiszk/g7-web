@@ -11,7 +11,7 @@ FROM node:14-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN npm run build && npm ci
+RUN NEXT_PUBLIC_BACKEND_BASE_URL=APP_NEXT_PUBLIC_BACKEND_BASE_URL NEXT_PUBLIC_API_BASE_URL=APP_NEXT_PUBLIC_API_BASE_URL NEXT_PUBLIC_CDN_BASE_URL=APP_NEXT_PUBLIC_CDN_BASE_URL npm run build && npm ci
 
 # Production image, copy all the files and run next
 FROM node:14-alpine AS runner
@@ -23,11 +23,12 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
-# COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/next.config.js ./next.config.js
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/entrypoint.sh ./entrypoint.sh
 
 USER nextjs
 
@@ -37,5 +38,7 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 # ENV NEXT_TELEMETRY_DISABLED 1
+
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 CMD ["npm", "start"]

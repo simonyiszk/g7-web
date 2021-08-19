@@ -4,9 +4,18 @@ const withTM = require("next-transpile-modules")(["@fontsource/noto-sans"]);
 
 const nextConfig = {
 	images: {
-		domains: ["g7.sch.bme.hu"],
+		domains: ["g7.sch.bme.hu", "g7.sch-bme.hu"],
 	},
 	env: {
+		NEXT_PUBLIC_BACKEND_BASE_URL: process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
+		NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+		NEXT_PUBLIC_CDN_BASE_URL: process.env.NEXT_PUBLIC_CDN_BASE_URL,
+	},
+	serverRuntimeConfig: {
+		// Will only be available on the server side
+	},
+	publicRuntimeConfig: {
+		// Will be available on both server and client
 		NEXT_PUBLIC_BACKEND_BASE_URL: process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
 		NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
 		NEXT_PUBLIC_CDN_BASE_URL: process.env.NEXT_PUBLIC_CDN_BASE_URL,
