@@ -16,17 +16,19 @@ export function Navbar() {
 	const [navbarOpen, navbarOpenHandlers] = useBool(false);
 	const [hide, hideHandlers] = useBool(false);
 	const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
-	const scrollDir = useScrollDirection("up", 0);
 
-	React.useEffect(() => {
-		if (scrollDir === "up") {
-			hideHandlers.setFalse();
-		} else {
-			hideHandlers.setTrue();
-			navbarOpenHandlers.setFalse();
-		}
-		return () => {};
-	}, [hideHandlers, navbarOpenHandlers, scrollDir]);
+	// Disabled the navbar hiding
+	// const scrollDir = useScrollDirection("up", 0);
+	//
+	// React.useEffect(() => {
+	// 	if (scrollDir === "up") {
+	// 		hideHandlers.setFalse();
+	// 	} else {
+	// 		hideHandlers.setTrue();
+	// 		navbarOpenHandlers.setFalse();
+	// 	}
+	// 	return () => {};
+	// }, [hideHandlers, navbarOpenHandlers, scrollDir]);
 
 	React.useEffect(() => {
 		if (darkMode) {
@@ -57,7 +59,7 @@ export function Navbar() {
 							<a className="text-2xl lg:text-4xl font-bold no-underline h-fit">
 								<div className="flex flex-row items-center">
 									<div className="flex relative items-center mr-2 lg:mr-4 w-8 lg:w-10 xl:w-12 h-8 lg:h-10 xl:h-12">
-										<Image src={logo} layout="fill" />
+										<Image src={logo} layout="fill" alt="G7 logó" />
 									</div>
 									G7 2021
 								</div>
