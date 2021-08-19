@@ -53,7 +53,13 @@ export function EventPreview({
 								</div>
 							)}
 						</div>
-						<h4 className="mx-0 mb-2 text-xl font-medium line-clamp-2">
+						<h4
+							className={clsx(
+								"mx-0 mb-2 text-xl font-medium line-clamp-2",
+								(!previewDescription || previewDescription === "") &&
+									"text-center",
+							)}
+						>
 							{title}
 						</h4>
 						<p className="mb-2 text-warmGray-200 line-clamp-5">
@@ -65,20 +71,28 @@ export function EventPreview({
 						// style={{ boxShadow: "rgb(0 0 0 / 80%) 0px 4px 9px 0px" }}
 					>
 						<div>
-							<p className="leading-tight md:whitespace-nowrap">{`${
-								startDate.getMonth() + 1
-							}.${startDate.getDate()}`}</p>
-							<p className="pb-2 leading-tight md:whitespace-nowrap">{`${startDate.toLocaleDateString(
-								"hu-HU",
-								{
-									weekday: "long",
-								},
-							)}`}</p>
-							<p className="font-semibold">{`${startDate.getHours()}:${startDate.getMinutes()}`}</p>
+							{previewDescription && previewDescription !== "" && (
+								<>
+									<p className="leading-tight md:whitespace-nowrap">
+										{startDate.toLocaleDateString("hu-HU", {
+											month: "numeric",
+											day: "2-digit",
+										})}
+									</p>
+									<p className="pb-2 leading-tight md:whitespace-nowrap">
+										{startDate.toLocaleDateString("hu-HU", {
+											weekday: "long",
+										})}
+									</p>
+								</>
+							)}
+							<p className="font-semibold">
+								{startDate.toLocaleTimeString("hu-HU", { timeStyle: "short" })}
+							</p>
 							<p className="font-semibold leading-3">-</p>
-							<p className="font-semibold">{`${
-								endDate.getHours() + 1
-							}:${endDate.getMinutes()}`}</p>
+							<p className="font-semibold">
+								{endDate.toLocaleTimeString("hu-HU", { timeStyle: "short" })}
+							</p>
 						</div>
 					</div>
 				</article>

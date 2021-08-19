@@ -61,7 +61,7 @@ export default function EventPage() {
 						src={data.event.fullImageUrl as any}
 						loader={cdnImageLoader}
 						alt="A feladathoz kép"
-						layout="responsive"
+						layout="fill"
 					/>
 				</div>
 			)}
