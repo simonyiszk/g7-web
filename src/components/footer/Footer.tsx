@@ -2,11 +2,11 @@ import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
 
-import kirdevsvg from "@/assets/images/kirdev.svg";
-import schsvg from "@/assets/images/sch.svg";
-import schdesignsvg from "@/assets/images/schdesign.svg";
+import kirdevpng from "@/assets/images/kirdev.png";
+import schpng from "@/assets/images/sch.png";
+import schdesignpng from "@/assets/images/schdesign.png";
 import ssslpng from "@/assets/images/sssl.png";
-import viksvg from "@/assets/images/vik.svg";
+import vikpng from "@/assets/images/vik.png";
 
 import * as styles from "./Footer.module.scss";
 
@@ -25,28 +25,44 @@ export function Footer() {
 					<a href="https://sch.bme.hu" target="_blank" rel="noreferrer">
 						<div className="relative m-4 w-24 h-16">
 							<Image
-								src={schsvg}
+								src={schpng}
 								alt="Schönherz Zoltán Kollégium logó"
 								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
 							/>
 						</div>
 					</a>
 					<a href="https://kir-dev.sch.bme.hu" target="_blank" rel="noreferrer">
-						<div className="relative w-20 h-20">
-							<Image src={kirdevsvg} alt="Kir-Dev logó" layout="fill" />
+						<div className="relative w-20 h-16">
+							<Image
+								src={kirdevpng}
+								alt="Kir-Dev logó"
+								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
+							/>
 						</div>
 					</a>
 					<a href="https://schdesign.hu" target="_blank" rel="noreferrer">
 						<div className="relative m-4 w-24 h-20">
-							<Image src={schdesignsvg} alt="schdesign logó" layout="fill" />
+							<Image
+								src={schdesignpng}
+								alt="schdesign logó"
+								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
+							/>
 						</div>
 					</a>
 					<a href="https://vik.bme.hu" target="_blank" rel="noreferrer">
 						<div className="relative m-4 w-16 h-16">
 							<Image
-								src={viksvg}
+								src={vikpng}
 								alt="BME Villamosmérnöki és Infromatikai kar logó"
 								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
 							/>
 						</div>
 					</a>
