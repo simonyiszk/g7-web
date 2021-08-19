@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import getConfig from "next/config";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -6,6 +7,8 @@ import useSWR from "swr";
 import type { EventType } from "@/@types/ApiBaseTypes";
 import { Layout } from "@/components/Layout";
 import { cdnImageLoader, fetcher } from "@/utils/utils";
+
+import styles from "./Event.module.scss";
 
 export default function EventPage() {
 	const { publicRuntimeConfig } = getConfig();
@@ -56,11 +59,18 @@ export default function EventPage() {
 			<p className="mb-2">{data.event.description}</p>
 
 			{data.event.fullImageUrl && data.event.fullImageUrl !== "" && (
-				<div className="relative">
+				<div
+					className={clsx(
+						"relative my-4 w-full h-auto max-h-96",
+						styles.imageContainer,
+					)}
+				>
 					<Image
 						src={data.event.fullImageUrl as any}
 						loader={cdnImageLoader}
+						className="!w-full !h-auto"
 						alt="A feladathoz kép"
+						objectFit="contain"
 						layout="fill"
 					/>
 				</div>

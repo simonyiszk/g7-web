@@ -1,0 +1,7 @@
+.imageContainer {
+	& div,
+	& img {
+		position: initial !important;
+		max-height: 24rem !important;
+	}
+}

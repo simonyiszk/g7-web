@@ -31,16 +31,21 @@ export function ArticlePreview({
 				highlighted && styles.highlighted,
 			)}
 		>
-			<h4 className="mb-2 text-xl font-medium line-clamp-2">{title}</h4>
-			<p className="mb-2 text-justify text-warmGray-200 line-clamp-6">
-				{brief}
-			</p>
+			<h4 className="mb-2 text-xl font-medium">{title}</h4>
+			<p className="mb-2 text-warmGray-200">{brief}</p>
 			{imageUrl && imageUrl !== "" && (
-				<div className="relative min-h-[156px]">
+				<div
+					className={clsx(
+						"relative my-4 w-full h-auto max-h-96",
+						styles.imageContainer,
+					)}
+				>
 					<Image
 						src={imageUrl as any}
+						className="!w-full !h-auto"
 						loader={cdnImageLoader}
 						alt="A hír képen"
+						objectFit="contain"
 						layout="fill"
 					/>
 				</div>
