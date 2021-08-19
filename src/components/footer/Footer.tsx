@@ -18,8 +18,15 @@ export function Footer() {
 			<div className="container grid grid-cols-1 justify-center content-center mx-auto text-center">
 				<div className="flex flex-wrap flex-auto justify-center content-center items-center mx-auto w-full">
 					<a href="https://sssl.sch.bme.hu/" target="_blank" rel="noreferrer">
-						<div className="relative m-4 w-16">
-							<Image src={ssslpng} alt="SSSL logó" placeholder="blur" />
+						<div className="relative m-4 w-16 h-20">
+							<Image
+								src={ssslpng}
+								alt="SSSL logó"
+								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
+								placeholder="blur"
+							/>
 						</div>
 					</a>
 					<a href="https://sch.bme.hu" target="_blank" rel="noreferrer">
@@ -30,6 +37,7 @@ export function Footer() {
 								layout="fill"
 								objectFit="contain"
 								objectPosition="center"
+								placeholder="blur"
 							/>
 						</div>
 					</a>
@@ -41,6 +49,7 @@ export function Footer() {
 								layout="fill"
 								objectFit="contain"
 								objectPosition="center"
+								placeholder="blur"
 							/>
 						</div>
 					</a>
@@ -52,6 +61,7 @@ export function Footer() {
 								layout="fill"
 								objectFit="contain"
 								objectPosition="center"
+								placeholder="blur"
 							/>
 						</div>
 					</a>
@@ -63,6 +73,7 @@ export function Footer() {
 								layout="fill"
 								objectFit="contain"
 								objectPosition="center"
+								placeholder="blur"
 							/>
 						</div>
 					</a>
