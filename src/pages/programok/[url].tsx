@@ -56,12 +56,14 @@ export default function EventPage() {
 			<p className="mb-2">{data.event.description}</p>
 
 			{data.event.fullImageUrl && data.event.fullImageUrl !== "" && (
-				<Image
-					src={data.event.fullImageUrl as any}
-					loader={cdnImageLoader}
-					alt="A feladathoz kép"
-					layout="responsive"
-				/>
+				<div className="relative">
+					<Image
+						src={data.event.fullImageUrl as any}
+						loader={cdnImageLoader}
+						alt="A feladathoz kép"
+						layout="responsive"
+					/>
+				</div>
 			)}
 		</Layout>
 	);
