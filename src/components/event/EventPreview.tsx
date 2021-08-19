@@ -40,16 +40,18 @@ export function EventPreview({
 					// style={{ boxShadow: "rgb(0 0 0 / 80%) 0px 4px 9px 0px" }}
 				>
 					<div className="flex justify-between mb-2 text-xs text-warmGray-400">
-						<div className="pr-2">
+						<div className="">
 							<span
 								className={clsx(
-									"float-left mr-2 w-3 h-3 bg-green-500 rounded-full",
+									"float-left mr-1 w-3 h-3 bg-green-500 rounded-full",
 									category.toLowerCase() === "egyetemi" && "bg-rose-600",
 									category.toLowerCase() === "külső" && "bg-orange-500",
 									category.toLowerCase() === "schönherz" && "bg-blue-500",
 								)}
 							/>
-							<h5 className="float-right">{category}</h5>
+							<h5 className="float-right capitalize">
+								{category.toLowerCase()}
+							</h5>
 						</div>
 						{place && place !== "" && (
 							<div>
@@ -62,7 +64,7 @@ export function EventPreview({
 					</div>
 					<h4
 						className={clsx(
-							"mx-0 mb-2 text-xl font-medium line-clamp-2",
+							"mx-0 mb-2 text-xl font-medium line-clamp-3 md:line-clamp-2",
 							(!previewDescription || previewDescription === "") &&
 								"text-center",
 						)}

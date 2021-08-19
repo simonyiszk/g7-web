@@ -36,13 +36,13 @@ export function ArticlePreview({
 			{imageUrl && imageUrl !== "" && (
 				<div
 					className={clsx(
-						"relative my-4 w-full h-auto max-h-96",
+						"relative my-4 w-full h-auto max-h-96 rounded-2xl",
 						styles.imageContainer,
 					)}
 				>
 					<Image
 						src={imageUrl as any}
-						className="!w-full !h-auto"
+						className="!w-full !h-auto rounded-2xl"
 						loader={cdnImageLoader}
 						alt="A hír képen"
 						objectFit="contain"
