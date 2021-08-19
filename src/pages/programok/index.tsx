@@ -56,7 +56,7 @@ export default function ProgramokPage({
 		<Layout className="pt-8" title="Programok">
 			<section className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto mb-8">
 				<h2 className="mb-6 text-4xl font-bold">Programok</h2>
-				<div className="flex justify-center mx-auto rounded-2xl bg-blur-7 w-fit">
+				<div className="flex sticky top-16 lg:top-20 xl:top-24 z-10 justify-center mx-auto rounded-2xl bg-blur-7 w-fit">
 					{Object.keys(events).map((day, index) => {
 						const dayUrl = day
 							.toLowerCase()
