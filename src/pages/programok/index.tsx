@@ -2,6 +2,7 @@ import clsx from "clsx";
 import type { InferGetServerSidePropsType } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
 
 import type { EventPreviewType } from "@/@types/ApiBaseTypes";
 import type { EventsRouteResponse } from "@/@types/ApiResponses";
@@ -57,7 +58,7 @@ export default function ProgramokPage({
 							.normalize("NFD")
 							.replace(/[\u0300-\u036f]/g, "");
 						return (
-							<Link href={`#${dayUrl}`} scroll={false} shallow>
+							<Link key={dayUrl} href={`#${dayUrl}`} scroll={false} shallow>
 								<a
 									className={clsx(
 										"flex justify-center items-center w-12 h-12 text-xl text-white",
@@ -81,14 +82,14 @@ export default function ProgramokPage({
 							.normalize("NFD")
 							.replace(/[\u0300-\u036f]/g, "");
 						return (
-							<>
+							<React.Fragment key={day}>
 								<h3 id={dayUrl} className="mt-4 text-2xl">
 									{day}
 								</h3>
 								{events[day as Days].map((event) => {
 									return <EventPreview key={event.url} {...event} />;
 								})}
-							</>
+							</React.Fragment>
 						);
 					})}
 				</div>
