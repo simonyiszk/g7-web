@@ -1,35 +1,68 @@
 import clsx from "clsx";
+import type {
+	GetServerSidePropsContext,
+	InferGetServerSidePropsType,
+} from "next";
 import getConfig from "next/config";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import type { ParsedUrlQuery } from "querystring";
 import useSWR from "swr";
 
 import type { EventType } from "@/@types/ApiBaseTypes";
+import type { EventResponse } from "@/@types/ApiResponses";
 import { Layout } from "@/components/Layout";
 import { cdnImageLoader, fetcher } from "@/utils/utils";
 
 import styles from "./Event.module.scss";
 
-export default function EventPage() {
+export async function getServerSideProps<
+	Q extends ParsedUrlQuery = ParsedUrlQuery,
+>(context: GetServerSidePropsContext<Q>) {
+	const eventResponse: EventResponse = await (
+		await fetch(
+			`${process.env.NEXT_PUBLIC_API_BASE_URL}events/${context.query.url}`,
+		)
+	).json();
+
+	return {
+		props: {
+			eventResponse,
+		},
+	};
+}
+
+export default function EventPage({
+	eventResponse,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
-	const { url } = router.query;
-	function getUrl(p: string) {
-		return `${
-			process.env.NEXT_PUBLIC_API_BASE_URL ??
-			publicRuntimeConfig?.NEXT_PUBLIC_API_BASE_URL ??
-			"errnoenv"
-		}events/${p}`;
-	}
-	const { data, error, mutate } = useSWR<{ event: EventType }>(
-		getUrl(url as string),
+	const { data, error, mutate } = useSWR<EventResponse>(
+		`${publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL}events/${router.query.url}`,
 		fetcher,
+		{ initialData: eventResponse },
 	);
 
-	console.log(data, error);
+	// console.log(data, error);
 
-	if (!data) {
-		return <Layout title="Töltés...">Töltés...</Layout>;
+	if (!data || !data.event) {
+		return (
+			<Layout
+				title={eventResponse?.event.title ?? "Töltés..."}
+				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto"
+			>
+				<div className="flex space-x-4 animate-pulse">
+					<div className="flex-1 py-1 space-y-4">
+						<div className="w-2/4 sm:w-1/3 h-10 bg-accent-dark dark:bg-warmGray-200 rounded" />
+						<div className="space-y-2">
+							<div className="w-1/4 h-8 bg-accent-dark dark:bg-warmGray-200 rounded" />
+							<div className="h-4 bg-accent-dark dark:bg-warmGray-200 rounded" />
+							<div className="w-5/6 h-4 bg-accent-dark dark:bg-warmGray-200 rounded" />
+						</div>
+					</div>
+				</div>
+			</Layout>
+		);
 	}
 
 	return (

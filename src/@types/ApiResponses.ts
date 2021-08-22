@@ -1,6 +1,7 @@
 import type {
 	AchievementEntry,
 	EventPreviewType,
+	EventType,
 	LeaderboardEntry,
 	NewsArticle,
 	UserPreview,
@@ -25,6 +26,14 @@ export type EventsRouteResponse = {
 	allEvents: EventPreviewType[];
 	eventsToday: EventPreviewType[];
 	userPreview: UserPreview;
+	warningMessage: string;
+};
+
+/**
+ * /api/events/[url]
+ */
+export type EventResponse = {
+	event: EventType;
 	warningMessage: string;
 };
 
