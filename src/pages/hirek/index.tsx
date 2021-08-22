@@ -1,17 +1,10 @@
-import type {
-	GetServerSideProps,
-	GetServerSidePropsContext,
-	InferGetServerSidePropsType,
-} from "next";
-import type { ParsedUrlQuery } from "querystring";
+import type { InferGetServerSidePropsType } from "next";
 
 import type { NewsRouteResponse } from "@/@types/ApiResponses";
 import { Layout } from "@/components/Layout";
 import { NewsSection } from "@/components/news/NewsSection";
 
-export async function getServerSideProps<
-	Q extends ParsedUrlQuery = ParsedUrlQuery,
->(context: GetServerSidePropsContext<Q>) {
+export async function getServerSideProps() {
 	const rawNews: NewsRouteResponse = await (
 		await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}news`)
 	).json();
@@ -23,7 +16,7 @@ export async function getServerSideProps<
 	};
 }
 
-export default function HirekPage({
+export default function NewsPage({
 	rawNews,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (

@@ -1,23 +1,16 @@
 import clsx from "clsx";
-import type {
-	GetServerSidePropsContext,
-	InferGetServerSidePropsType,
-} from "next";
+import type { InferGetServerSidePropsType } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { ParsedUrlQuery } from "querystring";
 
 import type { EventPreviewType } from "@/@types/ApiBaseTypes";
 import type { EventsRouteResponse } from "@/@types/ApiResponses";
 import { EventPreview } from "@/components/event/EventPreview";
-import { EventsSection } from "@/components/event/EventsSection";
 import { Layout } from "@/components/Layout";
 
 type Days = "Vasárnap" | "Hétfő" | "Kedd" | "Szerda" | "Csütörtök" | "Péntek";
 
-export async function getServerSideProps<
-	Q extends ParsedUrlQuery = ParsedUrlQuery,
->(context: GetServerSidePropsContext<Q>) {
+export async function getServerSideProps() {
 	const rawEvents: EventsRouteResponse = await (
 		await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}events`)
 	).json();

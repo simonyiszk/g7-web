@@ -55,11 +55,19 @@ html {
 }
 
 html {
-	scroll-snap-margin-top: 2rem;
-	scroll-padding-top: 2rem;
+	scroll-snap-margin-top: 92px;
+	scroll-snap-padding-top: 92px;
+	scroll-padding-top: 92px;
+	scroll-margin-top: 92px;
 	scroll-behavior: smooth;
 }
 
 html.dark body {
 	background-image: url("/assets/images/g7bckg_night_release_final.svg");
+}
+
+.particle {
+	position: fixed;
+	overflow: hidden;
+	will-change: transform;
 }

@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
 import useSWR from "swr";
 
-import type { EventType } from "@/@types/ApiBaseTypes";
 import type { EventResponse } from "@/@types/ApiResponses";
 import { Layout } from "@/components/Layout";
 import { cdnImageLoader, fetcher } from "@/utils/utils";
