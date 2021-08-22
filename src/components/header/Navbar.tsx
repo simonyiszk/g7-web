@@ -1,13 +1,17 @@
 import clsx from "clsx";
+import getConfig from "next/config";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaBars } from "react-icons/fa";
+import useSWR from "swr";
 
+import type { NewsRouteResponse } from "@/@types/ApiResponses";
 import logo from "@/assets/images/logo.png";
 import navbarContent from "@/data/navbar.json";
 import { useBool, useLocalStorage, useScrollDirection } from "@/utils/hooks";
+import { fetcher } from "@/utils/utils";
 
 import { Toggle } from "../toggle/Toggle";
 import styles from "./Navbar.module.scss";
@@ -16,6 +20,12 @@ export function Navbar() {
 	const [navbarOpen, navbarOpenHandlers] = useBool(false);
 	const [hide, hideHandlers] = useBool(false);
 	const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
+
+	const { publicRuntimeConfig } = getConfig();
+	const { data, error, mutate } = useSWR<NewsRouteResponse>(
+		`${publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL}news`,
+		fetcher,
+	);
 
 	// Disabled the navbar hiding
 	// const scrollDir = useScrollDirection("up", 0);
@@ -133,18 +143,17 @@ export function Navbar() {
 					</nav>
 				</div>
 			</header>
-			{/* <div
-				className={clsx(
-					styles.navbar,
-					"flex fixed z-10 justify-center p-1 w-full dark:text-white bg-yellow-400 dark:bg-yellow-600",
-					hide ? "top-0" : "top-[52px] lg:top-[68px] xl:top-[72px]",
-				)}
-			>
-				<h2 className="text-center">
-					Very long warning that only fits into multiple lines on smaller
-					screens like phones
-				</h2>
-			</div> */}
+			{data?.warningMessage && data.warningMessage !== "" && (
+				<div
+					className={clsx(
+						styles.navbar,
+						"flex fixed z-10 justify-center p-1 w-full dark:text-white bg-yellow-400 dark:bg-yellow-600",
+						hide ? "top-0" : "top-[52px] lg:top-[68px] xl:top-[72px]",
+					)}
+				>
+					<h2 className="text-center">{data.warningMessage}</h2>
+				</div>
+			)}
 		</>
 	);
 }

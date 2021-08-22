@@ -14,7 +14,10 @@ export default function ContactPage() {
 				<h4 className="mb-4 text-xl">
 					Ha bármilyen kérdésetek felmerül a programtervvel vagy az eseménnyel
 					kapcsolatban, akkor a{" "}
-					<a href="mailto:golyahet2021@sch.bme.hu" className="underline">
+					<a
+						href="mailto:golyahet2021@sch.bme.hu"
+						className="hover:text-orange-400 underline"
+					>
 						golyahet2021@sch.bme.hu
 					</a>{" "}
 					e-mail címen tudtok tájékozódni.
@@ -24,19 +27,13 @@ export default function ContactPage() {
 					keresztül éritek el:{" "}
 					<a
 						href="https://www.facebook.com/groups/bmevik2021"
-						className="underline"
+						className="hover:text-orange-400 underline"
 					>
 						https://www.facebook.com/groups/bmevik2021
 					</a>
 				</h5>
 				<h5 className="mb-4 text-lg">
-					Az esemény facebook eseményét ezen a linket keresztül találjátok meg:{" "}
-					<a
-						href="https://www.facebook.com/bmevikgolyahet"
-						className="underline"
-					>
-						https://www.facebook.com/bmevikgolyahet
-					</a>
+					A Gólyahét hivatalos facebook eseménye HAMAROSAN elérhető lesz.
 				</h5>
 			</section>
 		</Layout>

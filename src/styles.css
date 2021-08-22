@@ -55,10 +55,10 @@ html {
 }
 
 html {
-	scroll-snap-margin-top: 92px;
-	scroll-snap-padding-top: 92px;
-	scroll-padding-top: 92px;
-	scroll-margin-top: 92px;
+	scroll-snap-margin-top: 108px;
+	scroll-snap-padding-top: 108px;
+	scroll-padding-top: 108px;
+	scroll-margin-top: 108px;
 	scroll-behavior: smooth;
 }
 

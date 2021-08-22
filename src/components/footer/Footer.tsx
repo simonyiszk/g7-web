@@ -15,7 +15,7 @@ export function Footer() {
 	const loveRef = React.useRef<HTMLSpanElement>(null);
 	const [clicks, setClicks] = React.useState(0);
 	React.useEffect(() => {
-		if (clicks > 4 && loveRef.current) {
+		if (clicks > 1 && loveRef.current) {
 			setClicks(0);
 			const f = new Fountain(
 				loveRef.current.getBoundingClientRect().left,
