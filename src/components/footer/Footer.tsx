@@ -45,7 +45,7 @@ export function Footer() {
 		>
 			<div className="container grid grid-cols-1 justify-center content-center mx-auto text-center">
 				<div className="flex flex-wrap flex-auto justify-center content-center items-center mx-auto w-full ">
-					<a href="https://vodafone.hu/" target="_blank" rel="noreferrer">
+					<a href="https://vodafone.hu/karrier" target="_blank" rel="noreferrer">
 						<div className="relative m-4 w-20 h-24 !filter-none">
 							<Image
 								src={vodafone}
