@@ -38,7 +38,7 @@ export class Fountain {
 		this.autoAddParticle = true;
 		this.end = false;
 		this.height = document.documentElement.clientHeight;
-		this.sizes = [15, 20, 25, 35, 45];
+		this.sizes = [15, 20, 25];
 		this.variants = ["❤", "♥"];
 		this.x = x;
 		this.y = y;

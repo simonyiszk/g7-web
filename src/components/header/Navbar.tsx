@@ -69,7 +69,12 @@ export function Navbar() {
 							<a className="text-2xl lg:text-4xl font-bold no-underline h-fit">
 								<div className="flex flex-row items-center">
 									<div className="flex relative items-center mr-2 lg:mr-4 w-8 lg:w-10 xl:w-12 h-8 lg:h-10 xl:h-12">
-										<Image src={logo} layout="fill" alt="G7 logó" />
+										<Image
+											src={logo}
+											layout="fill"
+											placeholder="blur"
+											alt="G7 logó"
+										/>
 									</div>
 									G7 2021
 								</div>
