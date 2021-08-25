@@ -47,7 +47,13 @@ export default function EventPage({
 	if (!data || !data.event) {
 		return (
 			<Layout
-				title={eventResponse?.event.title ?? "Töltés..."}
+				title={
+					eventResponse?.event.ogTitle && eventResponse.event.ogTitle !== ""
+						? eventResponse.event.ogTitle
+						: eventResponse?.event.title ?? "Töltés..."
+				}
+				description={eventResponse?.event.ogDescription}
+				image={eventResponse?.event.ogImage}
 				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto"
 			>
 				<div className="flex space-x-4 animate-pulse">
@@ -66,7 +72,13 @@ export default function EventPage({
 
 	return (
 		<Layout
-			title={data.event.title}
+			title={
+				data.event.ogTitle && data.event.ogTitle !== ""
+					? data.event.ogTitle
+					: data.event.title
+			}
+			description={data.event.ogDescription}
+			image={data.event.ogImage}
 			className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto"
 		>
 			<h1 className="mb-2 text-4xl font-bold">{data.event.title}</h1>

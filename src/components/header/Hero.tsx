@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
 export function Hero() {
 	return (
-		<section className="flex flex-col justify-center items-center my-4 mb-8 w-full min-h-[calc(100vh-72px)] text-center">
+		<section className="flex flex-col justify-center items-center my-4 mb-8 w-full min-h-[calc(100vh-128px)] text-center">
 			<h2 className="text-3xl lg:text-4xl uppercase">BME-VIK</h2>
 			<h1 className="my-4 text-5xl lg:text-6xl uppercase">Gólyahét 2021</h1>
 			<h3 className="text-2xl lg:text-3xl">08.30. - 09.03.</h3>

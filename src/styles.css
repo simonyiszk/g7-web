@@ -47,13 +47,8 @@
 body,
 html {
 	@apply font-NotoSans;
-	@apply bg-white text-black;
-	@apply dark:bg-darkBG dark:text-white;
-	background-image: url("/assets/images/g7bckg_day_release_final.svg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
+	@apply text-black;
+	@apply dark:text-white;
 }
 
 html {
@@ -64,8 +59,27 @@ html {
 	scroll-behavior: smooth;
 }
 
-html.dark body {
+#bg {
+	background-color: white;
+	background-image: url("/assets/images/g7bckg_day_release_final.svg");
+	background-size: cover;
+	background-position-x: center;
+	background-position-y: top;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -1;
+}
+
+html.dark #bg {
+	background-color: black;
 	background-image: url("/assets/images/g7bckg_night_release_final.svg");
+}
+
+main {
+	background: transparent;
 }
 
 .particle {

@@ -28,17 +28,17 @@ export function Navbar() {
 	);
 
 	// Disabled the navbar hiding
-	// const scrollDir = useScrollDirection("up", 0);
-	//
-	// React.useEffect(() => {
-	// 	if (scrollDir === "up") {
-	// 		hideHandlers.setFalse();
-	// 	} else {
-	// 		hideHandlers.setTrue();
-	// 		navbarOpenHandlers.setFalse();
-	// 	}
-	// 	return () => {};
-	// }, [hideHandlers, navbarOpenHandlers, scrollDir]);
+	const scrollDir = useScrollDirection("up", 0);
+
+	React.useEffect(() => {
+		if (scrollDir === "up") {
+			hideHandlers.setFalse();
+		} else {
+			hideHandlers.setTrue();
+			navbarOpenHandlers.setFalse();
+		}
+		return () => {};
+	}, [hideHandlers, navbarOpenHandlers, scrollDir]);
 
 	React.useEffect(() => {
 		if (darkMode) {

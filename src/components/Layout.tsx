@@ -5,29 +5,38 @@ import { Navbar } from "@/components/header/Navbar";
 
 export type LayoutProps = {
 	title: string;
+	description?: string;
+	image?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export function Layout({ children, title, ...restProps }: LayoutProps) {
+export function Layout({
+	children,
+	title,
+	description,
+	image,
+	...restProps
+}: LayoutProps) {
 	const pageTitle = `G7 | ${title}`;
-	const description = "G7";
+	const defaultDescription =
+		description && description !== "" ? description : "G7";
 	const url = "https://g7.sch.bme.hu/";
-	const preview = `${url}preview.png`;
+	const preview = image && image !== "" ? image : `${url}preview.png`;
 	return (
 		<>
 			<Head>
 				<title>{pageTitle}</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta name="description" content={description} />
+				<meta name="description" content={defaultDescription} />
 				<meta name="thumbnail" content={preview} />
 
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content={pageTitle} />
-				<meta name="twitter:description" content={description} />
+				<meta name="twitter:description" content={defaultDescription} />
 				<meta name="twitter:image" content={preview} />
 
 				<meta property="og:image" content={preview} />
 				<meta property="og:title" content={pageTitle} />
-				<meta property="og:description" content={description} />
+				<meta property="og:description" content={defaultDescription} />
 				<meta property="og:url" content={url} />
 				<meta property="og:type" content="website" />
 
@@ -68,6 +77,8 @@ export function Layout({ children, title, ...restProps }: LayoutProps) {
 			<Navbar />
 
 			<div className="flex flex-col justify-between pt-[128px] lg:pt-[104px] min-h-screen">
+				<div id="bg" />
+
 				<main {...restProps}>{children}</main>
 
 				<Footer />
