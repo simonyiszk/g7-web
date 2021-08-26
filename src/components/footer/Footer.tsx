@@ -5,6 +5,7 @@ import React from "react";
 import kirdevpng from "@/assets/images/kirdev.png";
 import schpng from "@/assets/images/sch.png";
 import schdesignpng from "@/assets/images/schdesign.png";
+import snapsoft from "@/assets/images/snapsoft.png";
 import ssslpng from "@/assets/images/sssl.png";
 import vikpng from "@/assets/images/vik.png";
 import vikhk from "@/assets/images/vikhk.png";
@@ -45,11 +46,27 @@ export function Footer() {
 		>
 			<div className="container grid grid-cols-1 justify-center content-center mx-auto text-center">
 				<div className="flex flex-wrap flex-auto justify-center content-center items-center mx-auto w-full ">
-					<a href="https://vodafone.hu/karrier" target="_blank" rel="noreferrer">
+					<a
+						href="https://vodafone.hu/karrier"
+						target="_blank"
+						rel="noreferrer"
+					>
 						<div className="relative m-4 w-20 h-24 !filter-none">
 							<Image
 								src={vodafone}
 								alt="Vodafone logó"
+								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
+								placeholder="blur"
+							/>
+						</div>
+					</a>
+					<a href="https://snapsoft.hu" target="_blank" rel="noreferrer">
+						<div className="relative m-4 w-24 h-20 !filter-none">
+							<Image
+								src={snapsoft}
+								alt="Snapsoft logó"
 								layout="fill"
 								objectFit="contain"
 								objectPosition="center"
