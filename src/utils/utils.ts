@@ -1,5 +1,9 @@
-export function fetcher(url: string) {
-	return fetch(url).then((res) => res.json());
+export async function fetcher(url: string) {
+	const asd = fetch(url).then((res) => res.json());
+	const wasd = await fetch(url);
+	const qwe = await wasd.json();
+	console.log(qwe);
+	return asd;
 }
 
 export function cdnImageLoader({

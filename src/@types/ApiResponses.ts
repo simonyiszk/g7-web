@@ -47,3 +47,47 @@ export type HomeRouteResponse = {
 	leaderBoardVisible: boolean;
 	news: NewsArticle[];
 };
+
+/**
+ * /api/achievements
+ */
+export type AchievementsRouteResponse = {
+	achievements: AchievementEntry[];
+	groupScore: number;
+	highlighted: AchievementEntry[];
+	leaderBoard: LeaderboardEntry[];
+	leaderBoardFrozen: boolean;
+	leaderBoardVisible: boolean;
+	warningMessage: string;
+};
+
+/**
+ * /api/profile
+ */
+export type ProfileRouteResponse = {
+	group: {
+		coverImageUrl: string;
+		lastLatitude: string;
+		lastLongitude: string;
+		lastTimeLocationChanged: number;
+		lastTimeUpdatedUser: string;
+		major: string;
+		name: string;
+		staffs: [
+			{
+				facebookUrl: string;
+				mobilePhone: string;
+				name: string;
+			},
+		];
+	};
+	user: {
+		fullName: string;
+		g7id: string;
+		groupName: string;
+		guild: string;
+		major: string;
+		neptun: string;
+	};
+	warningMessage: string;
+};

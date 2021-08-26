@@ -1,58 +1,76 @@
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import {
 	FaCheckCircle,
 	FaExclamationCircle,
 	FaQuestionCircle,
+	FaRegUserCircle,
 	FaTimesCircle,
 } from "react-icons/fa";
 
-export type BucketListItemPreviewProps = {
-	number?: number;
-	title?: string;
-	status?: "Elfogadva" | "Elutasítva" | "Feldolgozás alatt" | "Beadásra vár";
-	timeLeft?: string;
+import type { AchievementStatus, AchievementType } from "@/@types/ApiBaseTypes";
+
+export type BucketListItemPreviewProps = AchievementType & {
+	status: AchievementStatus;
 };
 
 export function BucketListItemPreview({
-	number = 69,
-	title = "Feladat név",
-	status = "Elfogadva",
-	timeLeft = "12:34",
+	id,
+	title,
+	status,
+	availableTo,
 }: BucketListItemPreviewProps) {
+	const timeLeft = new Date(availableTo * 1000 - Date.now()).toLocaleTimeString(
+		"hu-HU",
+		{ timeStyle: "short" },
+	);
 	return (
-		<Link href={`/bucketlist/${number}`}>
+		<Link
+			href={{
+				pathname: "/bucketlist/[id]",
+				query: { id },
+			}}
+		>
 			<a>
 				<figure className="flex gap-4 justify-between items-center py-3 px-4 text-white bg-accent-dark rounded-2xl">
 					<div>
-						<h4 className="text-xl line-clamp-1">{`#${number} - ${title}`}</h4>
+						<h4 className="text-xl line-clamp-1">{`#${id} - ${title}`}</h4>
 						<p className="text-sm text-warmGray-400">
 							<span
 								className={clsx(
 									"whitespace-nowrap",
-									status === "Elfogadva" && "text-green-600",
-									status === "Elutasítva" && "text-red-600",
-									status === "Feldolgozás alatt" && "text-blue-600",
-									status === "Beadásra vár" && "text-yellow-600",
+									status === "ACCEPTED" && "text-green-600",
+									status === "REJECTED" && "text-red-600",
+									status === "SUBMITTED" && "text-blue-600",
+									status === "NOT_SUBMITTED" && "text-yellow-600",
+									status === "NOT_LOGGED_IN" && "text-purple-600",
 								)}
-							>{`${status}`}</span>{" "}
+							>{`${
+								(status === "ACCEPTED" && "Elfogadva") ||
+								(status === "REJECTED" && "Elutasítva") ||
+								(status === "SUBMITTED" && "Feldolgozás alatt") ||
+								(status === "NOT_SUBMITTED" && "Leadásra vár") ||
+								(status === "NOT_LOGGED_IN" && "Nem vagy belépve")
+							}`}</span>{" "}
 							-{" "}
 							<span className="whitespace-nowrap">{`Hátralévő idő: ${timeLeft}`}</span>
 						</p>
 					</div>
 					<div className="">
-						{status === "Elfogadva" && (
+						{status === "ACCEPTED" && (
 							<FaCheckCircle className="w-12 h-12 text-green-500" />
 						)}
-						{status === "Elutasítva" && (
+						{status === "REJECTED" && (
 							<FaTimesCircle className="w-12 h-12 text-red-500" />
 						)}
-						{status === "Feldolgozás alatt" && (
+						{status === "SUBMITTED" && (
 							<FaQuestionCircle className="w-12 h-12 text-blue-500" />
 						)}
-						{status === "Beadásra vár" && (
+						{status === "NOT_SUBMITTED" && (
 							<FaExclamationCircle className="w-12 h-12 text-yellow-500" />
+						)}
+						{status === "NOT_LOGGED_IN" && (
+							<FaRegUserCircle className="w-12 h-12 text-purple-500" />
 						)}
 					</div>
 				</figure>

@@ -54,6 +54,13 @@ export type AchievementStatus =
 	| "REJECTED"
 	| "NOT_LOGGED_IN";
 
+export type AchievementStatusTranslated =
+	| "Beadásra vár"
+	| "Feldolgozás alatt"
+	| "Elfogadva"
+	| "Elutasítva"
+	| "Nincs belépve";
+
 export type AchievementType = {
 	availableTo: number;
 	category: string;
