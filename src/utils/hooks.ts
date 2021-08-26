@@ -1,4 +1,27 @@
+import getConfig from "next/config";
 import { useEffect, useMemo, useState } from "react";
+import useSWR from "swr";
+
+import type { ProfileRouteResponse } from "@/@types/ApiResponses";
+
+import { fetcher } from "./utils";
+
+export function useUser() {
+	const { publicRuntimeConfig } = getConfig();
+	console.log(publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL);
+	return useSWR<ProfileRouteResponse>(
+		`${publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL}profile`,
+		fetcher,
+		{
+			onError: (err) => {
+				console.log(err);
+				// window.location.replace(
+				// 	`${publicRuntimeConfig.NEXT_PUBLIC_BACKEND_BASE_URL}login`,
+				// );
+			},
+		},
+	);
+}
 
 // https://gist.github.com/kyleshevlin/08a2deb904b79077e46966567ccabf06
 export function useBool(initialState = false): [
