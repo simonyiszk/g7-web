@@ -55,7 +55,7 @@ export default function EventPage({
 				}
 				description={eventResponse?.event.ogDescription}
 				image={eventResponse?.event.ogImage}
-				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto"
+				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto"
 			>
 				<div className="flex space-x-4 animate-pulse">
 					<div className="flex-1 py-1 space-y-4">
@@ -80,7 +80,7 @@ export default function EventPage({
 			}
 			description={data.event.ogDescription}
 			image={data.event.ogImage}
-			className="container px-4 lg:px-32 xl:px-48 2xl:px-64 mx-auto"
+			className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto"
 		>
 			<h1 className="mb-2 text-4xl font-bold">{data.event.title}</h1>
 			<h2 className="mb-1 text-xl">
