@@ -1,9 +1,16 @@
+import axios from "axios";
+
 export async function fetcher(url: string) {
-	const asd = fetch(url).then((res) => res.json());
-	const wasd = await fetch(url);
-	const qwe = await wasd.json();
-	console.log(qwe);
-	return asd;
+	const res = fetch(url, {
+		credentials: "include",
+	}).then((response) => {
+		if (response.status === 200) {
+			return response.json();
+		}
+		throw new Error(`error with status ${response.status}`);
+	});
+	// const data = axios.get(url).then((res) => res.data);
+	return res;
 }
 
 export function cdnImageLoader({
