@@ -1,4 +1,5 @@
 import type {
+	AchievementCategory,
 	AchievementEntry,
 	EventPreviewType,
 	EventType,
@@ -8,7 +9,7 @@ import type {
 } from "./ApiBaseTypes";
 
 /**
- * /api/news
+ * /news
  */
 export type NewsRouteResponse = {
 	interval: string;
@@ -20,7 +21,7 @@ export type NewsRouteResponse = {
 };
 
 /**
- * /api/events
+ * /events
  */
 export type EventsRouteResponse = {
 	allEvents: EventPreviewType[];
@@ -30,7 +31,7 @@ export type EventsRouteResponse = {
 };
 
 /**
- * /api/events/[url]
+ * /events/[url]
  */
 export type EventResponse = {
 	event: EventType;
@@ -38,7 +39,7 @@ export type EventResponse = {
 };
 
 /**
- * /api/home
+ * /home
  */
 export type HomeRouteResponse = {
 	achievements: AchievementEntry[];
@@ -49,20 +50,31 @@ export type HomeRouteResponse = {
 };
 
 /**
- * /api/achievements
+ * /achievements
  */
 export type AchievementsRouteResponse = {
-	achievements: AchievementEntry[];
-	groupScore: number;
-	highlighted: AchievementEntry[];
+	categories: AchievementCategory[];
 	leaderBoard: LeaderboardEntry[];
 	leaderBoardFrozen: boolean;
 	leaderBoardVisible: boolean;
-	warningMessage: string;
 };
 
 /**
- * /api/profile
+ * /achievements/[category]
+ */
+export type AchievementCategoryRouteResponse = {
+	groupScore: number;
+	categoryName: string;
+	achievements: AchievementEntry[];
+};
+
+/**
+ * /achievements/[category]/[id]
+ */
+export type AchievementRouteResponse = AchievementEntry;
+
+/**
+ * /profile
  */
 export type ProfileRouteResponse = {
 	group: {

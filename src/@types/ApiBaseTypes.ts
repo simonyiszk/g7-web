@@ -61,16 +61,32 @@ export type AchievementStatusTranslated =
 	| "Elutasítva"
 	| "Nincs belépve";
 
+export type AchievementSubmission = "IMAGE" | "TEXT" | "BOTH";
+
 export type AchievementType = {
-	availableTo: number;
-	category: string;
 	id: number;
-	maxScore: number;
 	title: string;
-	type: "IMAGE" | "TEXT";
+	category: string;
+	description: string;
+	expectedResultDescription: string;
+	type: AchievementSubmission;
+	availableFrom: number;
+	availableTo: number;
+	visible: boolean;
 };
 
 export type AchievementEntry = {
 	achievement: AchievementType;
 	status: AchievementStatus;
+};
+
+export type AchievementCategory = {
+	id: number;
+	name: string;
+	sum: number;
+	submitted: number;
+	accepted: number;
+	rejected: number;
+	activeFrom: number;
+	activeUntil: number;
 };

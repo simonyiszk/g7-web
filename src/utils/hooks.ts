@@ -15,7 +15,7 @@ export function useUser() {
 		{
 			onError: (err) => {
 				console.log(err);
-				// window.location.replace(
+				// window.location.assign(
 				// 	`${publicRuntimeConfig.NEXT_PUBLIC_BACKEND_BASE_URL}login`,
 				// );
 			},
