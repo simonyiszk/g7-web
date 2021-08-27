@@ -32,7 +32,9 @@ export function ArticlePreview({
 			)}
 		>
 			<h4 className="mb-2 text-xl font-medium">{title}</h4>
-			<p className="mb-2 text-warmGray-200">{brief}</p>
+			<p className="mb-2 text-warmGray-200" style={{ wordBreak: "break-word" }}>
+				{brief}
+			</p>
 			{imageUrl && imageUrl !== "" && (
 				<div
 					className={clsx(

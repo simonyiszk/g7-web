@@ -100,7 +100,9 @@ export default function EventPage({
 			{data.event.place && data.event.place !== "" && (
 				<h3 className="mb-4 text-xl">Helyszín: {data.event.place}</h3>
 			)}
-			<p className="mb-2">{data.event.description}</p>
+			<p className="mb-2" style={{ wordBreak: "break-word" }}>
+				{data.event.description}
+			</p>
 
 			{data.event.fullImageUrl && data.event.fullImageUrl !== "" && (
 				<div
