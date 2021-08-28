@@ -77,12 +77,18 @@ export type AchievementRouteResponse = AchievementEntry;
  * /profile
  */
 export type ProfileRouteResponse = {
+	debts: [
+		{
+			payed: boolean;
+			price: number;
+			product: string;
+			representativeName: string;
+			sellerName: string;
+			shipped: boolean;
+		},
+	];
 	group: {
 		coverImageUrl: string;
-		lastLatitude: string;
-		lastLongitude: string;
-		lastTimeLocationChanged: number;
-		lastTimeUpdatedUser: string;
 		major: string;
 		name: string;
 		staffs: [
@@ -93,6 +99,16 @@ export type ProfileRouteResponse = {
 			},
 		];
 	};
+	locations: [
+		{
+			accuracy: number;
+			latitude: number;
+			logitude: number;
+			name: string;
+			timestamp: number;
+		},
+	];
+	loggedin: boolean;
 	user: {
 		fullName: string;
 		g7id: string;
@@ -101,5 +117,4 @@ export type ProfileRouteResponse = {
 		major: string;
 		neptun: string;
 	};
-	warningMessage: string;
 };
