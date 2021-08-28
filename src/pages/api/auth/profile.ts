@@ -4,14 +4,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (req.method) {
 		case "GET": {
 			try {
-				console.log(req.cookies);
+				console.log(req.cookies, `JSESSIONID=${req.cookies.JSESSIONID};`);
+
 				const data = await fetch(
 					`${process.env.NEXT_PUBLIC_API_BASE_URL}profile`,
 					{
-						method: "GET",
-						mode: "cors",
-						cache: "no-cache",
-						credentials: "include",
+						headers: {
+							cookie: `JSESSIONID=F042895EAD2ABF32466392ED62A9E29A;`,
+						},
 					},
 				).then((response) => {
 					return response.json();
