@@ -5,3 +5,9 @@
 		max-height: 24rem !important;
 	}
 }
+
+.content {
+	a {
+		@apply underline hover:text-warmGray-400 visited:text-warmGray-300;
+	}
+}

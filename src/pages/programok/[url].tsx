@@ -7,6 +7,7 @@ import getConfig from "next/config";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
+import Linkify from "react-linkify";
 import useSWR from "swr";
 
 import type { EventResponse } from "@/@types/ApiResponses";
@@ -100,8 +101,11 @@ export default function EventPage({
 			{data.event.place && data.event.place !== "" && (
 				<h3 className="mb-4 text-xl">Helyszín: {data.event.place}</h3>
 			)}
-			<p className="mb-2" style={{ wordBreak: "break-word" }}>
-				{data.event.description}
+			<p
+				className={(clsx("mb-2"), styles.content)}
+				style={{ wordBreak: "break-word" }}
+			>
+				<Linkify>{data.event.description}</Linkify>
 			</p>
 
 			{data.event.fullImageUrl && data.event.fullImageUrl !== "" && (

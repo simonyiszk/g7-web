@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import Linkify from "react-linkify";
 
 import type { NewsArticle } from "@/@types/ApiBaseTypes";
 import { cdnImageLoader } from "@/utils/utils";
@@ -32,8 +33,11 @@ export function ArticlePreview({
 			)}
 		>
 			<h4 className="mb-2 text-xl font-medium">{title}</h4>
-			<p className="mb-2 text-warmGray-200" style={{ wordBreak: "break-word" }}>
-				{brief}
+			<p
+				className={clsx("mb-2 text-warmGray-200", styles.content)}
+				style={{ wordBreak: "break-word" }}
+			>
+				<Linkify>{brief}</Linkify>
 			</p>
 			{imageUrl && imageUrl !== "" && (
 				<div
