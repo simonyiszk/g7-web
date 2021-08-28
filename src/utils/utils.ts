@@ -1,8 +1,12 @@
 import axios from "axios";
 
 export async function fetcher(url: string) {
+	console.log(document.cookie);
 	const res = fetch(url, {
 		credentials: "include",
+		headers: {
+			Cookie: document.cookie,
+		},
 	}).then((response) => {
 		if (response.status === 200) {
 			return response.json();
