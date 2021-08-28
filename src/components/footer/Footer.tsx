@@ -2,7 +2,9 @@ import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
 
+import ak from "@/assets/images/ak.png";
 import kirdevpng from "@/assets/images/kirdev.png";
+import lustamacska from "@/assets/images/lustamacska.png";
 import schpng from "@/assets/images/sch.png";
 import schdesignpng from "@/assets/images/schdesign.png";
 import snapsoft from "@/assets/images/snapsoft.png";
@@ -18,7 +20,7 @@ export function Footer() {
 	const loveRef = React.useRef<HTMLSpanElement>(null);
 	const [clicks, setClicks] = React.useState(0);
 	React.useEffect(() => {
-		if (clicks !== 0 && clicks % 2 === 0 && loveRef.current) {
+		if (clicks % 2 === 1 && loveRef.current) {
 			const f = new Fountain(
 				loveRef.current.getBoundingClientRect().left,
 				loveRef.current.getBoundingClientRect().top,
@@ -26,10 +28,10 @@ export function Footer() {
 				777,
 			);
 		}
-		if (clicks === 13) {
-			window.open("https://i.imgur.com/OucAB1l.jpg", "_blank");
+		if (clicks === 5) {
+			window.open("https://i.imgur.com/OucAB1l.png", "_blank");
 		}
-		if (clicks === 25) {
+		if (clicks === 15) {
 			window.open(
 				"https://i.pinimg.com/originals/8e/6c/83/8e6c83e94bd52d56c302907806c8ecde.png",
 				"_blank",
@@ -67,6 +69,38 @@ export function Footer() {
 							<Image
 								src={snapsoft}
 								alt="Snapsoft logó"
+								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
+								placeholder="blur"
+							/>
+						</div>
+					</a>
+					<a
+						href="https://www.facebook.com/LustamacskaPub/"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<div className="relative m-4 w-20 h-24 !filter-none">
+							<Image
+								src={lustamacska}
+								alt="Lustamacska pub logó"
+								layout="fill"
+								objectFit="contain"
+								objectPosition="center"
+								placeholder="blur"
+							/>
+						</div>
+					</a>
+					<a
+						href="https://www.facebook.com/annakriszabc1/"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<div className="relative m-4 w-20 h-24 !filter-none">
+							<Image
+								src={ak}
+								alt="Anna Krisz ABC logó"
 								layout="fill"
 								objectFit="contain"
 								objectPosition="center"

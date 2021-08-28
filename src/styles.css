@@ -86,4 +86,5 @@ main {
 	position: fixed;
 	overflow: hidden;
 	will-change: transform;
+	@apply text-red-500;
 }
