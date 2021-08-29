@@ -18,6 +18,7 @@ export function BucketListItemPreview({
 	id,
 	title,
 	status,
+	categoryId,
 	availableTo,
 }: BucketListItemPreviewProps) {
 	const timeLeft = new Date(availableTo * 1000 - Date.now()).toLocaleTimeString(
@@ -27,8 +28,8 @@ export function BucketListItemPreview({
 	return (
 		<Link
 			href={{
-				pathname: "/bucketlist/[id]",
-				query: { id },
+				pathname: "/bucketlist/[categoryId]/[id]",
+				query: { categoryId, id },
 			}}
 		>
 			<a>

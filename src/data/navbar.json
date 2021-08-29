@@ -2,6 +2,7 @@
 	"links": [
 		{ "href": "/hirek", "label": "Hírek" },
 		{ "href": "/programok", "label": "Programok" },
+		{ "href": "/bucketlist", "label": "Bucketlist" },
 		{ "href": "/kapcsolat", "label": "Kapcsolat" },
 		{ "href": "/profil", "label": "Profil" }
 	]

@@ -37,7 +37,7 @@ export default function EventPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
-	const { data, error, mutate } = useSWR<EventResponse>(
+	const { data } = useSWR<EventResponse>(
 		`${publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL}events/${router.query.url}`,
 		fetcher,
 		{ initialData: eventResponse },
@@ -116,7 +116,7 @@ export default function EventPage({
 					)}
 				>
 					<Image
-						src={data.event.fullImageUrl as any}
+						src={data.event.fullImageUrl as never}
 						loader={cdnImageLoader}
 						className="!w-full !h-auto rounded-2xl"
 						alt="A feladathoz kép"

@@ -13,11 +13,9 @@ export function EventPreview({
 	place,
 	timestampEnd,
 	timestampStart,
-	previewImageUrl,
 	category,
 	url,
 }: EventPreviewProps) {
-	console.log();
 	const startDate = new Date(timestampStart * 1000);
 	const endDate = new Date(timestampEnd * 1000);
 	return (

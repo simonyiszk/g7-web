@@ -43,7 +43,7 @@ export function Leaderboard({
 							</div>
 						);
 					})}
-				{!isHidden && !isExpanded && (
+				{!isHidden && !isExpanded && data && data.length !== 0 && (
 					<button type="button" onClick={() => expandedHandlers.setTrue()}>
 						<div className="py-2 px-3 italic text-center text-warmGray-50 underline bg-gray-800">
 							Teljes leaderboard

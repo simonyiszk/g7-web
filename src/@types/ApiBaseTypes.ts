@@ -66,7 +66,7 @@ export type AchievementSubmission = "IMAGE" | "TEXT" | "BOTH";
 export type AchievementType = {
 	id: number;
 	title: string;
-	category: string;
+	categoryId: string;
 	description: string;
 	expectedResultDescription: string;
 	type: AchievementSubmission;
@@ -75,18 +75,24 @@ export type AchievementType = {
 	visible: boolean;
 };
 
-export type AchievementEntry = {
-	achievement: AchievementType;
-	status: AchievementStatus;
+export type AchievementSubmissionResult = {
+	approved: boolean;
+	groupName: string;
+	id: number;
+	imageUrlAnswer: string;
+	rejected: boolean;
+	response: string;
+	score: number;
+	textAnswer: string;
 };
 
 export type AchievementCategory = {
-	id: number;
+	categoryId: number;
 	name: string;
 	sum: number;
 	submitted: number;
-	accepted: number;
+	approved: number;
 	rejected: number;
-	activeFrom: number;
-	activeUntil: number;
+	availableFrom: number;
+	availableTo: number;
 };

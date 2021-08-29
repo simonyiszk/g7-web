@@ -1,4 +1,3 @@
-import getConfig from "next/config";
 import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 
@@ -7,20 +6,12 @@ import type { ProfileRouteResponse } from "@/@types/ApiResponses";
 import { fetcher } from "./utils";
 
 export function useUser() {
-	const { publicRuntimeConfig } = getConfig();
-	console.log(publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL);
-	return useSWR<ProfileRouteResponse>(
-		`${publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL}profile`,
-		fetcher,
-		{
-			onError: (err) => {
-				console.log(err);
-				// window.location.assign(
-				// 	`${publicRuntimeConfig.NEXT_PUBLIC_BACKEND_BASE_URL}login`,
-				// );
-			},
+	return useSWR<ProfileRouteResponse>(`api/auth/profile`, fetcher, {
+		onError: (err) => {
+			console.error(err);
+			return err;
 		},
-	);
+	});
 }
 
 // https://gist.github.com/kyleshevlin/08a2deb904b79077e46966567ccabf06
@@ -68,7 +59,6 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 			return initialValue;
 		}
 		try {
-			console.log(`init ${key}`);
 			// Get from local storage by key
 			const item = window.localStorage.getItem(key);
 			// Parse stored json or if none return initialValue
@@ -87,7 +77,6 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 			return;
 		}
 		try {
-			console.log(`save ${key}`);
 			// Allow value to be a function so we have same API as useState
 			const valueToStore =
 				value instanceof Function ? value(storedValue) : value;

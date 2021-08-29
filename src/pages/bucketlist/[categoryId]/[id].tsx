@@ -1,3 +1,5 @@
+import clsx from "clsx";
+import { parse } from "cookie";
 import type {
 	GetServerSidePropsContext,
 	InferGetServerSidePropsType,
@@ -9,14 +11,15 @@ import useSWR from "swr";
 
 import type { AchievementRouteResponse } from "@/@types/ApiResponses";
 import { Layout } from "@/components/Layout";
-import { fetcher } from "@/utils/utils";
+import { Skeleton } from "@/components/skeleton/Skeleton";
+import { fetcher, getAccessToken } from "@/utils/utils";
 
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
 	const rawAchievement: AchievementRouteResponse = await (
 		await fetch(
-			`${process.env.NEXT_PUBLIC_API_BASE_URL}achievements/${context.query.category}/${context.query.id}`,
+			`${process.env.NEXT_PUBLIC_API_BASE_URL}achievement/${context.req.cookies.accessToken}/submit/${context.query.id}`,
 		)
 	).json();
 
@@ -32,8 +35,10 @@ export default function AchievementPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
-	const { data, error, mutate } = useSWR<AchievementRouteResponse>(
-		`${publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL}achievements/${router.query.category}/${router.query.id}`,
+	const { data } = useSWR<AchievementRouteResponse>(
+		`${
+			publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
+		}achievement/${getAccessToken()}/submit/${router.query.id}`,
 		fetcher,
 		{ initialData: rawAchievement },
 	);
@@ -41,22 +46,15 @@ export default function AchievementPage({
 	if (!data) {
 		return (
 			<Layout
-				title={rawAchievement.achievement.title ?? "Töltés..."}
+				title={rawAchievement?.achievement?.title ?? "Töltés..."}
 				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto"
 			>
-				<div className="flex space-x-4 animate-pulse">
-					<div className="flex-1 py-1 space-y-4">
-						<div className="w-2/4 sm:w-1/3 h-10 bg-accent-dark dark:bg-warmGray-200 rounded" />
-						<div className="space-y-2">
-							<div className="w-1/4 h-8 bg-accent-dark dark:bg-warmGray-200 rounded" />
-							<div className="h-4 bg-accent-dark dark:bg-warmGray-200 rounded" />
-							<div className="w-5/6 h-4 bg-accent-dark dark:bg-warmGray-200 rounded" />
-						</div>
-					</div>
-				</div>
+				<Skeleton />
 			</Layout>
 		);
 	}
+
+	console.log(data);
 
 	return (
 		<Layout
@@ -67,7 +65,14 @@ export default function AchievementPage({
 				{data.achievement.title} - {data.achievement.id}
 			</h1>
 			<h2 className="mb-2 text-xl">
-				Állapot: {data.status}{" "}
+				Állapot:{" "}
+				{`${
+					(data.status === "ACCEPTED" && "Elfogadva") ||
+					(data.status === "REJECTED" && "Elutasítva") ||
+					(data.status === "SUBMITTED" && "Feldolgozás alatt") ||
+					(data.status === "NOT_SUBMITTED" && "Leadásra vár") ||
+					(data.status === "NOT_LOGGED_IN" && "Nem vagy belépve")
+				}`}{" "}
 				<span
 					className={clsx(
 						"w-2 h-2 rounded-full",
@@ -90,10 +95,11 @@ export default function AchievementPage({
 				{new Date(data.achievement.availableTo * 1000).toLocaleString("hu-HU", {
 					month: "2-digit",
 					day: "2-digit",
-					timeStyle: "short",
+					hour: "2-digit",
+					minute: "2-digit",
 				})}
 			</h2>
-			<p className="mt-2">{data.achievement.title}</p>
+			<p className="mt-2">{data.achievement.description}</p>
 		</Layout>
 	);
 }

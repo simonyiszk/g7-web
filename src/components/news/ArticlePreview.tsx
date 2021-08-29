@@ -47,7 +47,7 @@ export function ArticlePreview({
 					)}
 				>
 					<Image
-						src={imageUrl as any}
+						src={imageUrl as never}
 						className="!w-full !h-auto rounded-2xl"
 						loader={cdnImageLoader}
 						alt="A hír képen"

@@ -1,20 +1,14 @@
-import axios from "axios";
+import { parse } from "cookie";
 
 export async function fetcher(url: string) {
-	console.log(document.cookie);
-	const res = fetch(url, {
-		credentials: "include",
-		headers: {
-			Cookie: document.cookie,
-		},
-	}).then((response) => {
-		if (response.status === 200) {
-			return response.json();
-		}
-		throw new Error(`error with status ${response.status}`);
+	return fetch(url).then((res) => {
+		return res.json();
 	});
-	// const data = axios.get(url).then((res) => res.data);
-	return res;
+}
+
+export function getAccessToken() {
+	if (typeof document === "undefined") return undefined;
+	return parse(document.cookie).accessToken;
 }
 
 export function cdnImageLoader({

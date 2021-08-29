@@ -1,11 +1,14 @@
 import type {
 	AchievementCategory,
-	AchievementEntry,
+	AchievementStatus,
+	AchievementSubmissionResult,
+	AchievementType,
 	EventPreviewType,
 	EventType,
 	LeaderboardEntry,
 	NewsArticle,
 	UserPreview,
+	UserRole,
 } from "./ApiBaseTypes";
 
 /**
@@ -42,7 +45,11 @@ export type EventResponse = {
  * /home
  */
 export type HomeRouteResponse = {
-	achievements: AchievementEntry[];
+	achievements: {
+		achievement: AchievementType;
+		status: AchievementStatus;
+		comment: string;
+	}[];
 	upcomingEvents: EventPreviewType[];
 	leaderBoard: LeaderboardEntry[];
 	leaderBoardVisible: boolean;
@@ -65,13 +72,21 @@ export type AchievementsRouteResponse = {
 export type AchievementCategoryRouteResponse = {
 	groupScore: number;
 	categoryName: string;
-	achievements: AchievementEntry[];
+	achievements: {
+		achievement: AchievementType;
+		status: AchievementStatus;
+		comment: string;
+	}[];
 };
 
 /**
  * /achievements/[category]/[id]
  */
-export type AchievementRouteResponse = AchievementEntry;
+export type AchievementRouteResponse = {
+	achievement: AchievementType;
+	submission: AchievementSubmissionResult;
+	status: AchievementStatus;
+};
 
 /**
  * /profile
@@ -116,5 +131,6 @@ export type ProfileRouteResponse = {
 		guild: string;
 		major: string;
 		neptun: string;
+		role: UserRole;
 	};
 };
