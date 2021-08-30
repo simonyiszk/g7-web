@@ -4,11 +4,13 @@ import type {
 	InferGetServerSidePropsType,
 } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
 
 import type { AchievementsRouteResponse } from "@/@types/ApiResponses";
 import { Layout } from "@/components/Layout";
 import { Leaderboard } from "@/components/leaderboard/Leaderboard";
+import { getAccessToken } from "@/utils/utils";
 
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
@@ -27,6 +29,10 @@ export async function getServerSideProps<
 export default function BucketListPage({
 	data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+	const router = useRouter();
+	if (!getAccessToken()) {
+		router.push("/api/auth/login");
+	}
 	return (
 		<Layout title="BucketList" className="container px-4 pt-8 mx-auto mb-8">
 			<h2 className="mb-6 text-4xl font-bold">BucketList</h2>
@@ -34,7 +40,7 @@ export default function BucketListPage({
 				data={data.leaderBoard}
 				isHidden={!data.leaderBoardVisible}
 			/>
-			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8">
 				{data.categories.map((category) => {
 					return (
 						<div key={category.name} className="p-2">

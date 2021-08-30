@@ -80,7 +80,7 @@ export default function ProfilePage() {
 						<div className="flex justify-between pb-2">
 							<p>G7 tartozásom</p>
 							<p>
-								{data.debts.length > 0
+								{data.debts?.length > 0
 									? data.debts.reduce((prev, curr) => {
 											if (curr.payed) return prev;
 											return { ...prev, price: prev.price + curr.price };
@@ -92,7 +92,7 @@ export default function ProfilePage() {
 						<div className="py-3">
 							<p>Megvásárolt merch, kaja: </p>
 						</div>
-						{data.debts.map((debt, i) => {
+						{data.debts?.map((debt, i) => {
 							return (
 								<div
 									// eslint-disable-next-line react/no-array-index-key
@@ -117,7 +117,7 @@ export default function ProfilePage() {
 
 						{
 							// @ts-expect-error: length definitely not only 1
-							data.debts.length === 0 && (
+							data.debts?.length === 0 && (
 								<div className={clsx("flex justify-end")}>
 									<p>Még nem vettél semmit</p>
 								</div>
@@ -130,40 +130,38 @@ export default function ProfilePage() {
 					</p>
 				</div>
 				<div className="py-2 lg:py-4 px-3 lg:px-4 mb-2 w-full text-white rounded-2xl bg-blur-7 h-fit">
-					<p className="pb-2 text-xl font-bold">Tanköröm: {data.group.name}</p>
+					<p className="pb-2 text-xl font-bold">Tanköröm: {data.group?.name}</p>
 					<p className="py-3">Tankörseniorok:</p>
 					<div className="flex flex-col pl-3">
-						<div className="flex justify-between">
-							<div>
-								{data.group.staffs.map((staff) => (
-									<div className="pb-2">
-										<p className="pb-1">{staff.name}</p>
-										<a
-											className="block pb-1 hover:underline"
-											href={staff.facebookUrl}
-										>
-											{staff.facebookUrl}
-										</a>
-										<a
-											className="block hover:underline"
-											href={`tel:${staff.mobilePhone}`}
-										>
-											{staff.mobilePhone}
-										</a>
-									</div>
-								))}
-							</div>
-							{data.locations.length > 0 && (
-								<a
-									className="block self-center py-2 px-3 bg-green-600 rounded-xl h-fit"
-									href={`https://www.google.com/maps/search/?api=1&query=${data.locations[0].latitude}%2C${data.locations[0].logitude}`}
-									target="_blank"
-									rel="noreferrer"
-								>
-									Térkép
-								</a>
-							)}
+						<div>
+							{data.group.staffs.map((staff) => (
+								<div className="pb-2">
+									<p className="pb-1">{staff.name}</p>
+									<a
+										className="block pb-1 hover:underline"
+										href={staff.facebookUrl}
+									>
+										{staff.facebookUrl}
+									</a>
+									<a
+										className="block hover:underline"
+										href={`tel:${staff.mobilePhone}`}
+									>
+										{staff.mobilePhone}
+									</a>
+								</div>
+							))}
 						</div>
+						{data.locations?.length > 0 && (
+							<a
+								className="block self-center py-2 px-3 mt-2 bg-green-600 rounded-xl h-fit w-fit"
+								href={`https://www.google.com/maps/search/?api=1&query=${data.locations[0].latitude}%2C${data.locations[0].logitude}`}
+								target="_blank"
+								rel="noreferrer"
+							>
+								Tankör megjelenítése a térképen
+							</a>
+						)}
 					</div>
 				</div>
 			</section>
