@@ -37,7 +37,7 @@ export default function AchievementPage({
 	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
 	if (!getAccessToken() || getAccessToken() === "") {
-		if (window && router) router.push("/api/auth/login");
+		if (typeof window !== "undefined" && router) router.push("/api/auth/login");
 	}
 	const { data } = useSWR<AchievementRouteResponse>(
 		`${
@@ -51,7 +51,7 @@ export default function AchievementPage({
 	const [selectedFile, setSelectedFile] = useState(null);
 	const fileRef = useRef<HTMLInputElement>(null);
 
-	if (!data || !document) {
+	if (!data || typeof document === "undefined") {
 		return (
 			<Layout
 				title={rawAchievement?.achievement?.title ?? "Töltés..."}

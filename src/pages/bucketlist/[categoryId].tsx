@@ -36,7 +36,7 @@ export default function AchievementCategoryPage({
 	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
 	if (!getAccessToken() || getAccessToken() === "") {
-		if (window && router) router.push("/api/auth/login");
+		if (typeof window !== "undefined" && router) router.push("/api/auth/login");
 	}
 	const { data } = useSWR<AchievementCategoryRouteResponse>(
 		`${
@@ -46,7 +46,7 @@ export default function AchievementCategoryPage({
 		{ initialData: rawCategory },
 	);
 
-	if (!data || !document) {
+	if (!data || typeof document === "undefined") {
 		return (
 			<Layout
 				title={rawCategory.categoryName ?? "Töltés..."}
