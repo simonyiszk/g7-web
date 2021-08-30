@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { parse } from "cookie";
 import type {
 	GetServerSidePropsContext,
 	InferGetServerSidePropsType,
@@ -7,7 +6,7 @@ import type {
 import getConfig from "next/config";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 
 import type { AchievementRouteResponse } from "@/@types/ApiResponses";
@@ -48,8 +47,7 @@ export default function AchievementPage({
 	);
 
 	const [textInput, setTextInput] = useState("");
-	const [selectedFile, setSelectedFile] = useState(null);
-	const fileRef = useRef<HTMLInputElement>(null);
+	const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
 
 	if (!data || typeof document === "undefined") {
 		return (
@@ -111,16 +109,16 @@ export default function AchievementPage({
 
 			{data.status !== "SUBMITTED" && data.status !== "ACCEPTED" && (
 				<form
-					onSubmit={(event) => {
+					onSubmit={async (event) => {
 						event.preventDefault();
-						if (
-							fileRef?.current?.files &&
-							fileRef.current.files.length > 0 &&
-							textInput !== ""
-						) {
-							const file = new FormData();
-							file.append("file", fileRef.current.files[0]);
-							fetch(
+						if (!getAccessToken() || getAccessToken() === "") {
+							router.push("/api/auth/login");
+							return;
+						}
+						if (selectedFile && textInput !== "") {
+							const formData = new FormData();
+							formData.append("file", selectedFile);
+							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
 								}achievement/${getAccessToken()}/submit?achievementId=${
@@ -128,16 +126,16 @@ export default function AchievementPage({
 								}&textAnswer=${textInput}`,
 								{
 									method: "POST",
-									body: file,
+									body: formData,
 								},
 							);
 							router.reload();
 							return;
 						}
-						if (fileRef?.current?.files && fileRef.current.files.length > 0) {
-							const file = new FormData();
-							file.append("file", fileRef.current.files[0]);
-							fetch(
+						if (selectedFile) {
+							const formData = new FormData();
+							formData.append("file", selectedFile);
+							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
 								}achievement/${getAccessToken()}/submit?achievementId=${
@@ -145,14 +143,14 @@ export default function AchievementPage({
 								}`,
 								{
 									method: "POST",
-									body: file,
+									body: formData,
 								},
 							);
 							router.reload();
 							return;
 						}
 						if (textInput !== "") {
-							fetch(
+							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
 								}achievement/${getAccessToken()}/submit?achievementId=${
@@ -171,7 +169,16 @@ export default function AchievementPage({
 				>
 					{(data.achievement.type === "BOTH" ||
 						data.achievement.type === "IMAGE") && (
-						<input className="mt-2" type="file" ref={fileRef} />
+						<input
+							className="mt-2"
+							type="file"
+							onChange={(event) => {
+								if (event?.target?.files && event.target.files.length > 0) {
+									setSelectedFile(event.target.files[0]);
+								}
+							}}
+							accept="image/*"
+						/>
 					)}
 
 					{(data.achievement.type === "BOTH" ||

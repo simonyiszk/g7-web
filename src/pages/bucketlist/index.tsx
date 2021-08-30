@@ -43,7 +43,7 @@ export default function BucketListPage({
 			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8">
 				{data.categories.map((category) => {
 					return (
-						<div key={category.name} className="p-2">
+						<div key={category.name} className="p-2 text-white">
 							{/* <div className="relative mb-2 w-full h-2 bg-warmGray-500 rounded-full">
 								<div
 									className={clsx("absolute top-0 left-0 h-2 bg-green-500")}

@@ -68,7 +68,7 @@ export default function ProfilePage() {
 						data.user.role === "SUPERUSER") && (
 						<a
 							// eslint-disable-next-line tailwindcss/no-custom-classname
-							className="block p-3 py-2 mt-2 rounded-2xl bg-blur-7 hover:brightness-75"
+							className="block p-3 py-2 mt-2 text-white rounded-2xl bg-blur-7 hover:brightness-75"
 							href={`${publicRuntimeConfig.NEXT_PUBLIC_BACKEND_BASE_URL}entrypoint`}
 						>
 							Admin felület
