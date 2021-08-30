@@ -30,8 +30,8 @@ export default function BucketListPage({
 	data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const router = useRouter();
-	if (!getAccessToken()) {
-		router.push("/api/auth/login");
+	if (!getAccessToken() || getAccessToken() === "") {
+		if (window && router) router.push("/api/auth/login");
 	}
 	return (
 		<Layout title="BucketList" className="container px-4 pt-8 mx-auto mb-8">

@@ -35,8 +35,8 @@ export default function AchievementCategoryPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { publicRuntimeConfig } = getConfig();
 	const router = useRouter();
-	if (!getAccessToken()) {
-		router.push("/api/auth/login");
+	if (!getAccessToken() || getAccessToken() === "") {
+		if (window && router) router.push("/api/auth/login");
 	}
 	const { data } = useSWR<AchievementCategoryRouteResponse>(
 		`${
