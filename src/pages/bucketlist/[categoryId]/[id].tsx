@@ -90,7 +90,11 @@ export default function AchievementPage({
 				Hátralévő idő:{" "}
 				{new Date(
 					data.achievement.availableTo * 1000 - Date.now(),
-				).toLocaleTimeString("hu-HU", { timeStyle: "short" })}
+				).toLocaleString("hu-HU", {
+					day: "numeric",
+					hour: "2-digit",
+					minute: "2-digit",
+				})}
 			</h2>
 			<h2 className="mb-2 text-xl">
 				Beadás határideje:{" "}
