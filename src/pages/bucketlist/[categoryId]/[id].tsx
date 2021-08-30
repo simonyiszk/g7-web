@@ -51,7 +51,7 @@ export default function AchievementPage({
 	const [selectedFile, setSelectedFile] = useState(null);
 	const fileRef = useRef<HTMLInputElement>(null);
 
-	if (!data) {
+	if (!data || !document) {
 		return (
 			<Layout
 				title={rawAchievement?.achievement?.title ?? "Töltés..."}
@@ -105,8 +105,8 @@ export default function AchievementPage({
 			</h2>
 			<p className="mt-2 mb-4">{data.achievement.description}</p>
 
-			{data.submission?.response !== "" && (
-				<p className="my-4">Értékelő kommentje: {data.submission.response}</p>
+			{data.submission?.response && data.submission.response !== "" && (
+				<p className="my-4">Értékelő kommentje: {data.submission?.response}</p>
 			)}
 
 			{data.status !== "SUBMITTED" && data.status !== "ACCEPTED" && (

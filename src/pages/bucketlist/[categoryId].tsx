@@ -46,7 +46,7 @@ export default function AchievementCategoryPage({
 		{ initialData: rawCategory },
 	);
 
-	if (!data) {
+	if (!data || !document) {
 		return (
 			<Layout
 				title={rawCategory.categoryName ?? "Töltés..."}
