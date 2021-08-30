@@ -12,6 +12,7 @@ import useSWR from "swr";
 
 import type { EventResponse } from "@/@types/ApiResponses";
 import { Layout } from "@/components/Layout";
+import { Skeleton } from "@/components/skeleton/Skeleton";
 import { cdnImageLoader, fetcher } from "@/utils/utils";
 
 import styles from "./Event.module.scss";
@@ -43,8 +44,6 @@ export default function EventPage({
 		{ initialData: eventResponse },
 	);
 
-	// console.log(data, error);
-
 	if (!data || !data.event) {
 		return (
 			<Layout
@@ -57,16 +56,7 @@ export default function EventPage({
 				image={eventResponse?.event.ogImage}
 				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto"
 			>
-				<div className="flex space-x-4 animate-pulse">
-					<div className="flex-1 py-1 space-y-4">
-						<div className="w-2/4 sm:w-1/3 h-10 bg-accent-dark dark:bg-warmGray-200 rounded" />
-						<div className="space-y-2">
-							<div className="w-1/4 h-8 bg-accent-dark dark:bg-warmGray-200 rounded" />
-							<div className="h-4 bg-accent-dark dark:bg-warmGray-200 rounded" />
-							<div className="w-5/6 h-4 bg-accent-dark dark:bg-warmGray-200 rounded" />
-						</div>
-					</div>
-				</div>
+				<Skeleton />
 			</Layout>
 		);
 	}

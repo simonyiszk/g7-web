@@ -101,7 +101,7 @@ export function Navbar() {
 					<nav
 						className={clsx(
 							"lg:flex fixed lg:relative lg:top-0 right-0 z-30 flex-grow items-center w-full lg:w-auto lowercase bg-accent-dark transition-all transform-gpu",
-							navbarOpen ? "top-[52px]" : "top-[-208px]",
+							navbarOpen ? "top-[52px]" : "top-[-278px]",
 						)}
 					>
 						<ul className="flex z-30 flex-col lg:flex-row lg:ml-auto w-full lg:w-auto list-none">

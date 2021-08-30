@@ -6,6 +6,7 @@ import useSWR from "swr";
 
 import kirdev from "@/assets/images/kirdev.png";
 import { Layout } from "@/components/Layout";
+import { Skeleton } from "@/components/skeleton/Skeleton";
 import { useUser } from "@/utils/hooks";
 import { cdnImageLoader, fetcher } from "@/utils/utils";
 
@@ -17,9 +18,24 @@ export default function ProfilePage() {
 	console.log("data: ", data);
 	if (error) {
 		router.push("/api/auth/login");
-		return <Layout title="Profil">Not logged in</Layout>;
+		return (
+			<Layout
+				title="Profil"
+				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto mb-8"
+			>
+				<Skeleton />
+			</Layout>
+		);
 	}
-	if (!data) return <Layout title="Profil">Loading...</Layout>;
+	if (!data)
+		return (
+			<Layout
+				title="Profil"
+				className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto mb-8"
+			>
+				<Skeleton />
+			</Layout>
+		);
 
 	return (
 		<Layout
@@ -137,9 +153,16 @@ export default function ProfilePage() {
 									</div>
 								))}
 							</div>
-							<div className="self-center py-2 px-3 bg-green-600 rounded-xl h-fit">
-								Térkép
-							</div>
+							{data.locations.length > 0 && (
+								<a
+									className="block self-center py-2 px-3 bg-green-600 rounded-xl h-fit"
+									href={`https://www.google.com/maps/search/?api=1&query=${data.locations[0].latitude}%2C${data.locations[0].logitude}`}
+									target="_blank"
+									rel="noreferrer"
+								>
+									Térkép
+								</a>
+							)}
 						</div>
 					</div>
 				</div>

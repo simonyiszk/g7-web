@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type {
 	GetServerSidePropsContext,
 	InferGetServerSidePropsType,
@@ -12,14 +13,9 @@ import { Leaderboard } from "@/components/leaderboard/Leaderboard";
 export async function getServerSideProps<
 	Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(context: GetServerSidePropsContext<Q>) {
-	console.log(
-		`${process.env.NEXT_PUBLIC_API_BASE_URL}achievement/${context.req.cookies.accessToken}`,
-	);
 	const rawAchievements: AchievementsRouteResponse = await fetch(
 		`${process.env.NEXT_PUBLIC_API_BASE_URL}achievement/${context.req.cookies.accessToken}`,
-	)
-		.then((res) => res.json())
-		.catch((err: unknown) => console.log(err));
+	).then((res) => res.json());
 
 	return {
 		props: {
@@ -38,19 +34,31 @@ export default function BucketListPage({
 				data={data.leaderBoard}
 				isHidden={!data.leaderBoardVisible}
 			/>
-			<section className="grid auto-cols-fr">
+			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 				{data.categories.map((category) => {
 					return (
-						<Link
-							href={{
-								pathname: "/bucketlist/[categoryId]",
-								query: { categoryId: category.categoryId },
-							}}
-						>
-							<a className="block p-4 w-full rounded-2xl h-fit bg-blur-7">
-								<h3>{category.name}</h3>
-							</a>
-						</Link>
+						<div key={category.name} className="p-2">
+							{/* <div className="relative mb-2 w-full h-2 bg-warmGray-500 rounded-full">
+								<div
+									className={clsx("absolute top-0 left-0 h-2 bg-green-500")}
+									style={{
+										width: `${Math.ceil(
+											(category.approved / category.sum) * 100,
+										)}%`,
+									}}
+								/>
+							</div> */}
+							<Link
+								href={{
+									pathname: "/bucketlist/[categoryId]",
+									query: { categoryId: category.categoryId },
+								}}
+							>
+								<a className="block p-4 w-full text-center rounded-2xl h-fit bg-blur-7">
+									<h3>{category.name}</h3>
+								</a>
+							</Link>
+						</div>
 					);
 				})}
 			</section>

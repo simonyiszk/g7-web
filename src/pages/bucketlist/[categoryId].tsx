@@ -43,8 +43,6 @@ export default function AchievementCategoryPage({
 		{ initialData: rawCategory },
 	);
 
-	console.log(data);
-
 	if (!data) {
 		return (
 			<Layout
@@ -62,7 +60,7 @@ export default function AchievementCategoryPage({
 			className="container px-4 pt-8 mx-auto"
 		>
 			<section>
-				<h3>{data.categoryName}</h3>
+				<h3 className="mb-6 text-4xl font-bold">{data.categoryName}</h3>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 					{data.achievements.map((entry) => (
 						<BucketListItemPreview

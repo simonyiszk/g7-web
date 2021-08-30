@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 			).then((response) => {
 				return response.json();
 			});
-			console.log(data);
+			// console.log(data);
 
 			if (!data || !data.loggedin) {
 				throw new Error("Not logged in");

@@ -33,7 +33,7 @@ export function BucketListItemPreview({
 			}}
 		>
 			<a>
-				<figure className="flex gap-4 justify-between items-center py-3 px-4 text-white bg-accent-dark rounded-2xl">
+				<figure className="flex gap-4 justify-between items-center py-3 px-4 text-white rounded-2xl bg-blur-7">
 					<div>
 						<h4 className="text-xl line-clamp-1">{`#${id} - ${title}`}</h4>
 						<p className="text-sm text-warmGray-400">

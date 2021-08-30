@@ -36,7 +36,15 @@ export default function ContactPage() {
 					</a>
 				</h5>
 				<h5 className="mb-8 text-lg">
-					A Gólyahét hivatalos facebook eseménye HAMAROSAN elérhető lesz.
+					A Gólyahét hivatalos facebook eseménye:{" "}
+					<a
+						href="https://fb.me/e/2s9LTj315"
+						className="hover:text-orange-600 dark:hover:text-orange-400 underline break-words"
+						target="_blank"
+						rel="noreferrer"
+					>
+						https://fb.me/e/2s9LTj315
+					</a>
 				</h5>
 			</section>
 		</Layout>

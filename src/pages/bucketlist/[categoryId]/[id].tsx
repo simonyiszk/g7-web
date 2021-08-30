@@ -7,6 +7,7 @@ import type {
 import getConfig from "next/config";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
+import { useRef, useState } from "react";
 import useSWR from "swr";
 
 import type { AchievementRouteResponse } from "@/@types/ApiResponses";
@@ -43,6 +44,10 @@ export default function AchievementPage({
 		{ initialData: rawAchievement },
 	);
 
+	const [textInput, setTextInput] = useState("");
+	const [selectedFile, setSelectedFile] = useState(null);
+	const fileRef = useRef<HTMLInputElement>(null);
+
 	if (!data) {
 		return (
 			<Layout
@@ -54,15 +59,13 @@ export default function AchievementPage({
 		);
 	}
 
-	console.log(data);
-
 	return (
 		<Layout
-			title={data.achievement.title}
+			title={`${data.achievement.title} - #${data.achievement.id}`}
 			className="container px-4 lg:px-32 xl:px-48 2xl:px-64 pt-8 mx-auto"
 		>
 			<h1 className="mb-4 text-4xl font-bold">
-				{data.achievement.title} - {data.achievement.id}
+				{data.achievement.title} - #{data.achievement.id}
 			</h1>
 			<h2 className="mb-2 text-xl">
 				Állapot:{" "}
@@ -75,7 +78,7 @@ export default function AchievementPage({
 				}`}{" "}
 				<span
 					className={clsx(
-						"w-2 h-2 rounded-full",
+						"inline-block w-3 h-3 rounded-full",
 						data.status === "ACCEPTED" && "bg-green-600",
 						data.status === "REJECTED" && "bg-red-600",
 						data.status === "SUBMITTED" && "bg-blue-600",
@@ -99,7 +102,91 @@ export default function AchievementPage({
 					minute: "2-digit",
 				})}
 			</h2>
-			<p className="mt-2">{data.achievement.description}</p>
+			<p className="mt-2 mb-4">{data.achievement.description}</p>
+			<form
+				onSubmit={(event) => {
+					event.preventDefault();
+					if (
+						fileRef?.current?.files &&
+						fileRef.current.files.length > 0 &&
+						textInput !== ""
+					) {
+						const file = new FormData();
+						file.append("file", fileRef.current.files[0]);
+						fetch(
+							`${
+								publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
+							}achievement/${getAccessToken()}/submit?achievementId=${
+								router.query.id
+							}&textAnswer=${textInput}`,
+							{
+								method: "POST",
+								body: file,
+							},
+						);
+						router.reload();
+						return;
+					}
+					if (fileRef?.current?.files && fileRef.current.files.length > 0) {
+						const file = new FormData();
+						file.append("file", fileRef.current.files[0]);
+						fetch(
+							`${
+								publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
+							}achievement/${getAccessToken()}/submit?achievementId=${
+								router.query.id
+							}`,
+							{
+								method: "POST",
+								body: file,
+							},
+						);
+						router.reload();
+						return;
+					}
+					if (textInput !== "") {
+						fetch(
+							`${
+								publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
+							}achievement/${getAccessToken()}/submit?achievementId=${
+								router.query.id
+							}&textAnswer=${textInput}`,
+							{
+								method: "POST",
+							},
+						);
+						router.reload();
+						return;
+					}
+					window.alert("Nem adtál meg semmit!");
+				}}
+				className="flex flex-col"
+			>
+				{(data.achievement.type === "BOTH" ||
+					data.achievement.type === "IMAGE") && (
+					<input className="mt-2" type="file" ref={fileRef} />
+				)}
+				{(data.achievement.type === "BOTH" ||
+					data.achievement.type === "TEXT") && (
+					<textarea
+						className="p-2 mt-4 h-32 border-2 border-gray-600 bg-blur-7"
+						placeholder="Szöveges válasz:"
+						value={textInput}
+						onChange={(event) => {
+							setTextInput(event.target.value);
+						}}
+					/>
+				)}
+				<p className="my-4">
+					Tipp a beadáshoz: {data.achievement.expectedResultDescription}
+				</p>
+				<button
+					type="submit"
+					className="self-center p-4 mt-2 mb-4 text-xl font-bold text-white rounded-lg bg-blur-7 w-fit"
+				>
+					Beadás
+				</button>
+			</form>
 		</Layout>
 	);
 }
