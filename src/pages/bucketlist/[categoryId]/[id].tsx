@@ -60,6 +60,17 @@ export default function AchievementPage({
 		);
 	}
 
+	const daysLeft = new Date(
+		data.achievement.availableTo * 1000 - Date.now(),
+	).toLocaleString("hu-HU", {
+		day: "numeric",
+	});
+	const hoursLeft = new Date(
+		data.achievement.availableTo * 1000 - Date.now(),
+	).toLocaleTimeString("hu-HU", {
+		timeStyle: "short",
+	});
+
 	return (
 		<Layout
 			title={`${data.achievement.title}`}
@@ -88,13 +99,8 @@ export default function AchievementPage({
 			</h2>
 			<h2 className="mb-2 text-xl">
 				Hátralévő idő:{" "}
-				{new Date(
-					data.achievement.availableTo * 1000 - Date.now(),
-				).toLocaleString("hu-HU", {
-					day: "numeric",
-					hour: "2-digit",
-					minute: "2-digit",
-				})}
+				{Number.parseInt(daysLeft, 10) > 0 ? `${daysLeft} nap ` : ``}
+				{hoursLeft}
 			</h2>
 			<h2 className="mb-2 text-xl">
 				Beadás határideje:{" "}

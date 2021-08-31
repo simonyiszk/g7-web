@@ -21,6 +21,10 @@ export function BucketListItemPreview({
 	categoryId,
 	availableTo,
 }: BucketListItemPreviewProps) {
+	const daysLeft = new Date(availableTo * 1000 - Date.now()).toLocaleString(
+		"hu-HU",
+		{ day: "numeric" },
+	);
 	const timeLeft = new Date(availableTo * 1000 - Date.now()).toLocaleTimeString(
 		"hu-HU",
 		{ timeStyle: "short" },
@@ -36,7 +40,7 @@ export function BucketListItemPreview({
 				<figure className="flex gap-4 justify-between items-center py-3 px-4 text-white rounded-2xl bg-blur-7">
 					<div>
 						<h4 className="text-xl line-clamp-1">{`${title}`}</h4>
-						<p className="text-sm text-warmGray-400">
+						<p className="text-xs text-warmGray-400">
 							<span
 								className={clsx(
 									"whitespace-nowrap",
@@ -54,7 +58,9 @@ export function BucketListItemPreview({
 								(status === "NOT_LOGGED_IN" && "Nem vagy belépve")
 							}`}</span>{" "}
 							-{" "}
-							<span className="whitespace-nowrap">{`Hátralévő idő: ${timeLeft}`}</span>
+							<span className="whitespace-nowrap">{`Hátralévő idő: ${
+								Number.parseInt(daysLeft, 10) > 0 ? `${daysLeft} nap ` : ``
+							}${timeLeft}`}</span>
 						</p>
 					</div>
 					<div className="">
