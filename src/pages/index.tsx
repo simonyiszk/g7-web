@@ -3,6 +3,8 @@ import type {
 	GetServerSidePropsContext,
 	InferGetServerSidePropsType,
 } from "next";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import type { ParsedUrlQuery } from "querystring";
 
 import type { HomeRouteResponse } from "@/@types/ApiResponses";
@@ -20,25 +22,49 @@ export async function getServerSideProps<
 		await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}home`)
 	).json();
 
+	const mdxSource = await Promise.all(
+		data.news.map((v) => {
+			return serialize(v.brief);
+		}),
+	);
+	const newNews: {
+		mdx: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
+		title: string;
+		brief: string;
+		timestamp: number;
+		imageUrl: string;
+		highlighted: boolean;
+	}[] = [];
+
+	// eslint-disable-next-line no-plusplus
+	for (let index = 0; index < data.news.length; index++) {
+		newNews.push({ ...data.news[index], mdx: mdxSource[index] });
+	}
+
+	const extendedData = {
+		...data,
+		news: newNews,
+	};
+
 	return {
 		props: {
-			data,
+			extendedData,
 		},
 	};
 }
 
 export default function HomePage({
-	data,
+	extendedData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
 		<Layout title="Főoldal">
 			<Hero />
 			<div className="container mx-auto">
 				{/* <div> */}
-				<NewsSection title="Friss hírek" articles={data.news} />
+				<NewsSection title="Friss hírek" articles={extendedData.news} />
 				<EventsSection
 					title="Közelgő programok"
-					programPreviews={data.upcomingEvents}
+					programPreviews={extendedData.upcomingEvents}
 				/>
 				{/* </div> */}
 				{/* <div className="">

@@ -1,10 +1,18 @@
 import clsx from "clsx";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import type { ArticlePreviewProps } from "./ArticlePreview";
 import { ArticlePreview } from "./ArticlePreview";
 
 export type NewsSectionProps = {
-	articles: ArticlePreviewProps[];
+	articles: {
+		mdx: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
+		title: string;
+		brief: string;
+		timestamp: number;
+		imageUrl: string;
+		highlighted: boolean;
+	}[];
 	title?: string;
 	lastX?: number;
 };

@@ -27,4 +27,7 @@
 	a {
 		@apply underline hover:text-warmGray-300 visited:text-warmGray-400;
 	}
+	p {
+		@apply pb-2;
+	}
 }

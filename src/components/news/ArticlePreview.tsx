@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Linkify from "react-linkify";
 
 import type { NewsArticle } from "@/@types/ApiBaseTypes";
@@ -8,7 +9,9 @@ import { cdnImageLoader } from "@/utils/utils";
 
 import styles from "./ArticlePreview.module.scss";
 
-export type ArticlePreviewProps = NewsArticle;
+export type ArticlePreviewProps = NewsArticle & {
+	mdx: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
+};
 
 export function ArticlePreview({
 	title,
@@ -16,6 +19,7 @@ export function ArticlePreview({
 	timestamp,
 	imageUrl,
 	highlighted,
+	mdx,
 }: ArticlePreviewProps) {
 	const date = new Date(timestamp * 1000);
 	return (
@@ -33,12 +37,12 @@ export function ArticlePreview({
 			)}
 		>
 			<h4 className="mb-2 text-xl font-medium">{title}</h4>
-			<p
+			<div
 				className={clsx("mb-2 text-warmGray-200", styles.content)}
 				style={{ wordBreak: "break-word" }}
 			>
-				<Linkify>{brief}</Linkify>
-			</p>
+				<MDXRemote {...mdx} />
+			</div>
 			{imageUrl && imageUrl !== "" && (
 				<div
 					className={clsx(

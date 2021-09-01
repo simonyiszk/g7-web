@@ -128,12 +128,13 @@ export default function AchievementPage({
 						if (selectedFile && textInput !== "") {
 							const formData = new FormData();
 							formData.append("file", selectedFile);
+							const encodedAnswer = encodeURI(textInput);
 							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
 								}achievement/${getAccessToken()}/submit?achievementId=${
 									router.query.id
-								}&textAnswer=${textInput}`,
+								}&textAnswer=${encodedAnswer}`,
 								{
 									method: "POST",
 									body: formData,
@@ -160,12 +161,13 @@ export default function AchievementPage({
 							return;
 						}
 						if (textInput !== "") {
+							const encodedAnswer = encodeURI(textInput);
 							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
 								}achievement/${getAccessToken()}/submit?achievementId=${
 									router.query.id
-								}&textAnswer=${textInput}`,
+								}&textAnswer=${encodedAnswer}`,
 								{
 									method: "POST",
 								},

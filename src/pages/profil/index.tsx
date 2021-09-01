@@ -37,6 +37,13 @@ export default function ProfilePage() {
 			</Layout>
 		);
 
+	let debt = 0;
+	data.debts?.forEach((d) => {
+		if (d.payed !== true) {
+			debt += d.price;
+		}
+	});
+
 	return (
 		<Layout
 			title="Profil"
@@ -79,37 +86,29 @@ export default function ProfilePage() {
 					<div className="py-2 lg:py-4 px-3 lg:px-4 mb-2 w-full text-white rounded-2xl bg-blur-7 h-fit">
 						<div className="flex justify-between pb-2">
 							<p>G7 tartozásom</p>
-							<p>
-								{data.debts?.length > 0
-									? data.debts.reduce((prev, curr) => {
-											if (curr.payed) return prev;
-											return { ...prev, price: prev.price + curr.price };
-									  }).price
-									: 0}{" "}
-								JMF
-							</p>
+							<p>{debt} JMF</p>
 						</div>
 						<div className="py-3">
 							<p>Megvásárolt merch, kaja: </p>
 						</div>
-						{data.debts?.map((debt, i) => {
+						{data.debts?.map((d, i) => {
 							return (
 								<div
 									// eslint-disable-next-line react/no-array-index-key
-									key={debt.product + i}
+									key={d.product + i}
 									className={clsx(
 										"flex justify-between",
 										i < data.debts.length - 1 &&
 											"pb-2 mb-2 border-b-[1px] border-warmGray-500 dark:border-warmGray-700",
 									)}
 								>
-									<p>{debt.product}</p>
+									<p>{d.product}</p>
 									<p
 										className={clsx(
-											debt.payed === true && "text-warmGray-400 line-through",
+											d.payed === true && "text-warmGray-400 line-through",
 										)}
 									>
-										{debt.price} JMF
+										{d.price} JMF
 									</p>
 								</div>
 							);
