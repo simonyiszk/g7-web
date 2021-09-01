@@ -128,7 +128,7 @@ export default function AchievementPage({
 						if (selectedFile && textInput !== "") {
 							const formData = new FormData();
 							formData.append("file", selectedFile);
-							const encodedAnswer = encodeURI(textInput);
+							const encodedAnswer = encodeURIComponent(textInput);
 							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
@@ -161,7 +161,7 @@ export default function AchievementPage({
 							return;
 						}
 						if (textInput !== "") {
-							const encodedAnswer = encodeURI(textInput);
+							const encodedAnswer = encodeURIComponent(textInput);
 							const res = await fetch(
 								`${
 									publicRuntimeConfig.NEXT_PUBLIC_API_BASE_URL
