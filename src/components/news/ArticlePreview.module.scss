@@ -25,9 +25,15 @@
 
 .content {
 	a {
-		@apply underline hover:text-warmGray-300 visited:text-warmGray-400;
+		@apply underline text-warmGray-200 hover:text-warmGray-300 visited:text-warmGray-400;
 	}
-	p {
-		@apply pb-2;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	strong {
+		@apply text-warmGray-200;
 	}
 }

@@ -38,7 +38,10 @@ export function ArticlePreview({
 		>
 			<h4 className="mb-2 text-xl font-medium">{title}</h4>
 			<div
-				className={clsx("mb-2 text-warmGray-200", styles.content)}
+				className={clsx(
+					"mb-2 max-w-none text-warmGray-200 prose",
+					styles.content,
+				)}
 				style={{ wordBreak: "break-word" }}
 			>
 				<MDXRemote {...mdx} />

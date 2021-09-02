@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 const aspectRatio = require("@tailwindcss/aspect-ratio");
 const lineClamp = require("@tailwindcss/line-clamp");
+const typography = require("@tailwindcss/typography");
 
 module.exports = {
 	mode: "jit",
@@ -29,5 +30,5 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [aspectRatio, lineClamp],
+	plugins: [aspectRatio, lineClamp, typography],
 };
